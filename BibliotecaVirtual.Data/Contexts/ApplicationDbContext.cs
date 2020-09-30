@@ -1,83 +1,44 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BibliotecaVirtual.Data.Contexts;
+using BibliotecaVirtual.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace BibliotecaVirtual.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : GenericContext<ApplicationDbContext>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        { }
-
-        #region OnModelCreating
-
-        /// <summary>
-        /// Abstract method to map our entities using reflection.
-        /// </summary>
-        /// <param name="modelBuilder">ModelBuilder instance.</param>
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+            :base(options)
         {
-            #region Base ModelBuilder
 
-            try
-            {
-                base.OnModelCreating(modelBuilder);
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw ex;
-            }
+        }
 
-            #endregion
+        #region DbSet
 
-            #region Generic model building
+        public virtual DbSet<IdentityUser> IdentityUser { get; set; }
+        public virtual DbSet<User> Usuario { get; set; }
 
-            // Interface of our entities.
-            var mappingInterface = typeof(IEntityTypeConfiguration<>);
+        #endregion
 
-            // Entity types to be mapped.
-            var mappingTypes = typeof(ApplicationDbContext).GetTypeInfo()
-                                               .Assembly.GetTypes()
-                                               .Where(x => x.GetInterfaces()
-                                               .Any(y => y.GetTypeInfo().IsGenericType &&
-                                                         y.GetGenericTypeDefinition() == mappingInterface));
+        #region Abstract Classes
 
-            // ModelBuilder's generic method.
-            var entityMethod = typeof(ModelBuilder).GetMethods()
-                                                   .Single(x => x.Name == "Entity" &&
-                                                                x.IsGenericMethod &&
-                                                                x.ReturnType.Name == "EntityTypeBuilder`1");
+        public override void DatabaseConfig(DbContextOptionsBuilder optionsBuilder)
+        {
+            var config = new ConfigurationBuilder()
+                       .SetBasePath(Directory.GetCurrentDirectory())
+                       .AddJsonFile("database.json", optional: false, reloadOnChange: true)
+                       .Build();
 
-            foreach (var mappingType in mappingTypes)
-            {
-                try
-                {
-                    // Entity type to be mapped.
-                    var genericTypeArg = mappingType.GetInterfaces().Single().GenericTypeArguments.Single();
+            var database = config["Database"];
+            var connectionString = config["ConnectionStrings:DefaultConnection"];
+            optionsBuilder.UseSqlServer(connectionString);
+        }
 
-                    // builder.Entity<TEntity> method.
-                    var genericEntityMethod = entityMethod.MakeGenericMethod(genericTypeArg);
-
-                    // Calling builder.Entity<TEntity> to obtain the model builder of our entity.
-                    var entityBuilder = genericEntityMethod.Invoke(modelBuilder, null);
-
-                    // Creating a new mapping instance.
-                    var mapper = Activator.CreateInstance(mappingType);
-
-                    //Invokes the "Configure" method of each entity's mapping class.
-                    mapper.GetType().GetMethod("Configure")?.Invoke(mapper, new[] { entityBuilder });
-                }
-                catch (Exception ex)
-                {
-                    //Pausa para identificar o erro.
-                    System.Diagnostics.Debugger.Break();
-                }
-            }
-
-            #endregion
+        public override void IgnoreEntities(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<IdentityUser>();
         }
 
         #endregion

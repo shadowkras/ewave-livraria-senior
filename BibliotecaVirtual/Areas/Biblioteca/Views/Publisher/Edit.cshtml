@@ -1,0 +1,59 @@
+﻿@model PublisherViewModel
+@{
+    string ActionName = Html.ActionName();
+}
+
+<div>
+    <header class="heading">
+        @{
+            if (String.IsNullOrEmpty(ActionName) == false)
+            {
+                if (ActionName == "Add")
+                {
+                <h2 id="tituloFormulario">Adicionando editora</h2>
+                }
+                else if (ActionName == "Edit")
+                {
+                    <h2 id="tituloFormulario">Alterando editora</h2>
+                }
+            }
+        }
+    </header>
+</div>
+
+<form asp-action="@ActionName" method="post">
+    @{ await Html.RenderPartialAsync("_ValidationSummary"); }
+    <fieldset>
+        <div class="col-sm-12 row no-margin no-padding">
+            @{
+                if (ActionName == "Edit")
+                {
+                    <div class="col-sm-3 col-md-2 form-group">
+                        <label class="label" asp-for="@Model.PublisherId"></label>
+                        <label class="input">
+                            <i class="icon-append fa fa-key"></i>
+                            <input asp-for="@Model.PublisherId" class="form-control" readonly />
+                            <span asp-validation-for="@Model.PublisherId" class="text-danger"></span>
+                        </label>
+                    </div>
+                    <div class="col-sm-9 col-md-10 form-group">
+                        <label class="label" asp-for="@Model.Name"></label>
+                        <input asp-for="@Model.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-12 col-md-12 form-group">
+                        <label class="label" asp-for="@Model.Name"></label>
+                        <input asp-for="@Model.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                }
+            }
+        </div>
+    </fieldset>
+
+    @{ await Html.RenderPartialAsync("_FormButtons",
+            new FormButtonsViewModel(nameof(PublisherViewModel.PublisherId), Model?.PublisherId)); }
+</form>

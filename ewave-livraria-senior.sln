@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Applic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Data", "3. Data", "{A660439E-F779-4506-92E2-5394A16A4DF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaVirtual.Data", "BibliotecaVirtual.Data\BibliotecaVirtual.Data.csproj", "{F122F0E4-C4D3-42E5-8F0D-A032655D584C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaVirtual.Data", "BibliotecaVirtual.Data\BibliotecaVirtual.Data.csproj", "{F122F0E4-C4D3-42E5-8F0D-A032655D584C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotercaVirtual.Application", "BibliotercaVirtual.Application\BibliotercaVirtual.Application.csproj", "{4AFFA1BE-CEE9-4984-85D9-5C6E325100B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaVirtual.Application", "BibliotecaVirtual.Application\BibliotecaVirtual.Application.csproj", "{4AFFA1BE-CEE9-4984-85D9-5C6E325100B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

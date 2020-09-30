@@ -1,0 +1,74 @@
+﻿@{
+    var modelo = new BookViewModel();
+}
+
+<div class="col-12 no-padding">
+    <header class="heading">
+        <h2 id="tituloFormulario">Livros</h2>
+        <div class="cursor-pointer float-right botao-cadastrar-livro">
+            <a class="btn-sm btn-primary text-light"
+               asp-action="Add">Cadastrar livro</a>
+        </div>
+    </header>
+    @{ await Html.RenderPartialAsync("_ValidationSummary"); }
+    <div id="gradeLivros" class="no-padding">
+        <div class="col-sm-10 row">
+            <div class="col-sm-8 form-group">
+                <label class="label">Pesquisar por Título ou Autor(a)</label>
+                <input class="form-control input-sm"
+                       v-model="filtroPesquisa" v-on:input="filtroChanged()" />
+            </div>
+        </div>
+        <table id="tableLivros"
+               class="table table-striped table-hover"
+               tabindex="0">
+            <thead>
+                <tr>
+                    <th ordem="0" id="th@(nameof(modelo.BookId))">
+                        @(modelo.DisplayName(nameof(modelo.BookId)))
+                    </th>
+                    <th ordem="0" id="th@(nameof(modelo.Title))">
+                        @(modelo.DisplayName(nameof(modelo.Title)))
+                    </th>
+                    <th ordem="0" id="th@(nameof(modelo.AuthorName))">
+                        @(modelo.DisplayName(nameof(modelo.AuthorName)))
+                    </th>
+                    <th ordem="0" id="th@(nameof(modelo.PublishDate))">
+                        @(modelo.DisplayName(nameof(modelo.PublishDate)))
+                    </th>
+                    <th class='grade-col-alterar'></th>
+                </tr>
+            </thead>
+            <tbody class="dados">
+                <tr v-show="isEmpty()">
+                    <td class="text-center" colspan="4">
+                        Nenhum livro encontrado.
+                    </td>
+                </tr>
+                <tr v-show="!isEmpty()"
+                    v-for="item in gradeLivros">
+                    <td class='grade-col-campo'>
+                        {{item.bookId}}
+                    </td>
+                    <td class='grade-col-campo'>
+                        {{item.title}}
+                    </td>
+                    <td class='grade-col-campo'>
+                        {{item.authorName}}
+                    </td>
+                    <td class='grade-col-campo'>
+                        {{getPublishDate(item)}}
+                    </td>
+                    <td class="grade-col-alterar">
+                        <a class='btn btn-primary btn-sm' tabindex="0"
+                           data-original-title='Alterar informações do livro.'
+                           data-placement='auto'
+                           :href="registroConsultar('@(Url.GetAbsoluteUrl("Book", "Edit"))', item)">
+                            <i class=""></i> Alterar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

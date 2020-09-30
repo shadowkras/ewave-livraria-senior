@@ -1,0 +1,174 @@
+﻿@model BookViewModel
+@{
+    string ActionName = Html.ActionName();
+}
+
+<div>
+    <header class="heading">
+        @{
+            if (String.IsNullOrEmpty(ActionName) == false)
+            {
+                if (ActionName == "Add")
+                {
+                    <h2 id="tituloFormulario">Adicionando livro</h2>
+                }
+                else if (ActionName == "Edit")
+                {
+                    <h2 id="tituloFormulario">Alterando livro</h2>
+                }
+            }
+        }
+    </header>
+</div>
+
+<form asp-action="@ActionName" method="post">
+    @{ await Html.RenderPartialAsync("_ValidationSummary"); }
+    <fieldset>
+        <div class="col-sm-12 row no-margin no-padding">
+            @{
+                if (ActionName == "Edit")
+                {
+                    <div class="col-sm-3 col-md-2 form-group">
+                        <label class="label" asp-for="@Model.BookId"></label>
+                        <label class="input">
+                            <i class="icon-append fa fa-key"></i>
+                            <input asp-for="@Model.BookId" class="form-control" readonly />
+                            <span asp-validation-for="@Model.BookId" class="text-danger"></span>
+                        </label>
+                    </div>
+                    <div class="col-sm-9 col-md-6 form-group">
+                        <label class="label" asp-for="@Model.Title"></label>
+                        <input asp-for="@Model.Title" class="form-control" />
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-12 col-md-8 form-group">
+                        <label class="label" asp-for="@Model.Title"></label>
+                        <input asp-for="@Model.Title" class="form-control" />
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                    </div>
+                }
+
+                <div class="col-sm-12 col-md-2">
+                    <label class="label" asp-for="@Model.PublishDate"></label>
+                    <input asp-for="@Model.PublishDate" class="form-control" type="date" />
+                    <span asp-validation-for="@Model.PublishDate" class="text-danger"></span>
+                </div>
+                <div class="col-sm-12 col-md-2">
+                    <label class="label" asp-for="@Model.Pages"></label>
+                    <input asp-for="@Model.Pages" class="form-control" />
+                    <span asp-validation-for="@Model.Pages" class="text-danger"></span>
+                </div>
+
+                <div class="col-sm-12 col-md-12 form-group">
+                    <label class="label" asp-for="@Model.Description"></label>
+                    <textarea asp-for="@Model.Description" class="form-control"></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                </div>
+                <div class="col-sm-12 col-md-12 form-group">
+                    <label class="label" asp-for="@Model.Sinopsis"></label>
+                    <textarea asp-for="@Model.Sinopsis" class="form-control"></textarea>
+                    <span asp-validation-for="@Model.Sinopsis" class="text-danger"></span>
+                </div>                
+                <div class="col-sm-12 col-md-6 form-group">
+                    <label class="label" asp-for="@Model.AuthorId"></label>
+                    <select id="selectAuthor" asp-for="@Model.AuthorId" class="form-control"
+                            v-model="selectedValue" v-bind:load="setSelectedValue('@(@Model.AuthorId)')">
+                        <option value="-1">
+                            Selecione o(a) autor(a) do livro.
+                        </option>
+                        <option class="carregando" value="-1">
+                            Carregando. Aguarde um momento.
+                        </option>
+                        <option v-show="isEmpty" value="-1"
+                                v-on:click="newAuthor('@(Url.GetAbsoluteUrl("Author", "Add"))')">
+                            Nenhum autor(a) cadastrado(a). Clique aqui para cadastrar
+                        </option>
+                        <option v-for="item in selectAuthor"
+                                :value="getAuthorId(item)"
+                                :selected="selectedValue == @Model.AuthorId">
+                            {{ getAuthorName(item) }}
+                        </option>
+                        <option value="-1" class="form-control"
+                                v-on:click="obterOpcoes()">
+                            Atualizar autores(as)
+                        </option>
+                    </select>
+                    <span asp-validation-for="@Model.AuthorId" class="text-danger"></span>
+                </div>
+                <div class="col-sm-12 col-md-6 form-group">
+                    <label class="label" asp-for="@Model.PublisherId"></label>
+                    <select id="selectPublisher" asp-for="@Model.PublisherId" class="form-control"
+                            v-model="selectedValue" v-bind:load="setSelectedValue('@(@Model.PublisherId)')">
+                        <option value="-1">
+                            Selecione a editora do livro.
+                        </option>
+                        <option class="carregando" value="-1">
+                            Carregando. Aguarde um momento.
+                        </option>
+                        <option v-show="isEmpty" value="-1"
+                                v-on:click="newPublisher('@(Url.GetAbsoluteUrl("Publisher", "Add"))')">
+                            Nenhuma editora cadastrada. Clique aqui para cadastrar
+                        </option>
+                        <option v-for="item in selectPublisher"
+                                :value="getPublisherId(item)"
+                                :selected="selectedValue == @Model.PublisherId">
+                            {{ getPublisherName(item) }}
+                        </option>
+                        <option value="-1" class="form-control"
+                                v-on:click="obterOpcoes()">
+                            Atualizar editoras
+                        </option>
+                    </select>
+                    <span asp-validation-for="@Model.PublisherId" class="text-danger"></span>
+                </div>
+                <div class="col-sm-12 col-md-12 row form-group no-margin no-padding">
+                    <div class="col-sm-12 col-md-6">
+                        <label class="label" asp-for="@Model.CategoriesList"></label>
+                        @{ 
+                            string itemsCategorias = "";
+                            foreach(var item in Model.CategoriesList)
+                            {
+                                if(string.IsNullOrEmpty(itemsCategorias) == false)
+                                {
+                                    itemsCategorias += ",";
+                                }
+
+                                itemsCategorias += item.ToString();
+                            }
+                        }
+                        <select id="selectCategory"  asp-for="@Model.CategoriesList" class="form-control" multiple                                
+                                v-model="selectedValues" v-bind:load="setSelectedValues('@(itemsCategorias)')">
+                            <option class="carregando" value="-1">
+                                Carregando. Aguarde um momento.
+                            </option>
+                            <option v-show="this.isEmpty()" value="-1" class="form-control"
+                                    v-on:click="newCategory('@(Url.GetAbsoluteUrl("Category", "Add"))')">
+                                Nenhum gênero cadastrado. Clique aqui para cadastrar
+                            </option>
+                            <option v-for="item in selectCategory" class="form-control-plaintext"
+                                    :value="getCategoryId(item)">
+                                {{ getCategoryName(item) }}
+                            </option>
+                            <option value="-1" class="form-control"
+                                    v-on:click="obterOpcoes()">
+                                Atualizar gêneros
+                            </option>
+                        </select>
+                        <span asp-validation-for="@Model.CategoriesList" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label class="label" asp-for="@Model.CoverImageBase64"></label>
+                        <input asp-for="@Model.CoverImageBase64" class="form-control img-output hide-input" readonly />
+                        <span asp-validation-for="@Model.CoverImageBase64" class="text-danger"></span>
+                    </div>
+                </div>                
+            }
+        </div>
+    </fieldset>
+
+    @{ await Html.RenderPartialAsync("_FormButtons",
+                new FormButtonsViewModel(nameof(BookViewModel.BookId), Model?.BookId)); }
+</form>

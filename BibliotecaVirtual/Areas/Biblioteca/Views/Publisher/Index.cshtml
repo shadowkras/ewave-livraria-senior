@@ -1,0 +1,59 @@
+﻿@model ICollection<PublisherViewModel>
+@{
+    var modelo = new PublisherViewModel();
+}
+
+<div class="col-12 no-padding">
+    <header class="heading">
+        <h2 id="tituloFormulario">Editoras</h2>
+        <div class="cursor-pointer float-right mb-2">
+            <a class="btn-sm btn-primary text-light"
+               asp-action="Add">Cadastrar editora</a>
+        </div>
+    </header>
+    @{ await Html.RenderPartialAsync("_ValidationSummary"); }
+    <div id="gradeEditoras" class="no-padding">
+        <table id="tableEditoras"
+               class="table table-striped table-hover"
+               tabindex="0">
+            <thead>
+                <tr>
+                    <th ordem="0" id="th@(nameof(modelo.PublisherId))">
+                        @(modelo.DisplayName(nameof(modelo.PublisherId)))
+                    </th>
+                    <th ordem="0" id="th@(nameof(modelo.Name))">
+                        @(modelo.DisplayName(nameof(modelo.Name)))
+                    </th>
+                    <th class='grade-col-alterar'></th>
+                </tr>
+            </thead>
+            <tbody class="dados">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @{
+                            <td class='grade-col-campo'
+                                ng-bind="item.@(nameof(modelo.PublisherId))">
+                                @item.PublisherId
+                            </td>
+                            <td class='grade-col-campo'
+                                ng-bind="item.@(nameof(modelo.Name))">
+                                @item.Name
+                            </td>
+                            <td class="grade-col-alterar">
+                                <a class='btn btn-primary btn-sm' tabindex="0"
+                                   data-original-title='Alterar informações da editora.'
+                                   data-placement='auto'
+                                   asp-area="Biblioteca" asp-controller="Publisher"
+                                   asp-action="Edit"
+                                   asp-route-publisherid="@item.PublisherId">
+                                    <i class=""></i> Alterar
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,14 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+using BibliotecaVirtual.Application.DependencyInjection;
+using BibliotecaVirtual.Application.Interfaces;
+using BibliotecaVirtual.Application.Services;
 using BibliotecaVirtual.Data;
+using BibliotecaVirtual.Data.Interfaces;
+using BibliotecaVirtual.Data.Repositories;
+using BibliotecaVirtual.DependencyInjection;
 using BibliotecaVirtual.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,17 +19,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StructureMap;
 
 namespace BibliotecaVirtual
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration,
+                       IHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -61,10 +67,17 @@ namespace BibliotecaVirtual
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddEntityFrameworkSqlServer();
 
-            //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<IdentityFrameworkDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
 
             #region Default Identity, UI, Framework
 
@@ -74,7 +87,7 @@ namespace BibliotecaVirtual
                 opt.User.RequireUniqueEmail = true;
                 opt.Password.RequiredLength = 8;
             }).AddDefaultUI()
-              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddEntityFrameworkStores<IdentityFrameworkDbContext>()
               .AddDefaultTokenProviders()
               .AddErrorDescriber<PortugueseIdentityErrorDescriber>();
 
@@ -134,21 +147,33 @@ namespace BibliotecaVirtual
 
             #region Services
 
-            //services.AddTransient<IAuthorService, AuthorService>();
-            //services.AddTransient<IPublisherService, PublisherService>();
-            //services.AddTransient<ICategoryService, CategoryService>();
-            //services.AddTransient<IBookService, BookService>();
-            //services.AddTransient<IAuthorRepository, AuthorRepository>();
-            //services.AddTransient<IPublisherRepository, PublisherRepository>();
-            //services.AddTransient<ICategoryRepository, CategoryRepository>();
-            //services.AddTransient<IBookRepository, BookRepository>();
-            //services.AddTransient<IBookCategoryRepository, BookCategoryRepository>();
+            //services.AddScoped<IPublisherService, PublisherService>();
+            //services.AddScoped<ICategoryService, CategoryService>();
+            //services.AddScoped<IBookService, BookService>();
+            //services.AddScoped<IAuthorRepository, AuthorRepository>();
+            //services.AddScoped<IPublisherRepository, PublisherRepository>();
+            //services.AddScoped<ICategoryRepository, CategoryRepository>();
+            //services.AddScoped<IBookRepository, BookRepository>();
+            //services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
+
+            #endregion
+
+            #region Resolução de IoC
+
+            services.AddOptions();
+
+            var container = BootStrapper.Container;
+            StructureMapDependencyResolver.ContainerAcesso = () => container;
+            container.Populate(services);
+
+            var serviceProvider = container.GetInstance<IServiceProvider>();
 
             #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+        public void Configure(IApplicationBuilder app, 
+                              IWebHostEnvironment env,
                               ApplicationDbContext dbContext)
         {
             #region Compressão

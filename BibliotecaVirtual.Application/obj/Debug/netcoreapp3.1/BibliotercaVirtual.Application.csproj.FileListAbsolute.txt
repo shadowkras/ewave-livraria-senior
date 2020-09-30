@@ -1,0 +1,14 @@
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\bin\Debug\netcoreapp3.1\BibliotercaVirtual.Application.deps.json
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\bin\Debug\netcoreapp3.1\BibliotercaVirtual.Application.dll
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\bin\Debug\netcoreapp3.1\BibliotercaVirtual.Application.pdb
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.AssemblyInfoInputs.cache
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.AssemblyInfo.cs
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.dll
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.pdb
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\bin\Debug\netcoreapp3.1\BibliotecaVirtual.Data.dll
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\bin\Debug\netcoreapp3.1\BibliotecaVirtual.Data.pdb
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.csprojAssemblyReference.cache
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.csproj.CopyComplete
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.Resources.Criticas.resources
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.Resources.Erros.resources
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotercaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotercaVirtual.Application.csproj.GenerateResource.cache

@@ -1,0 +1,66 @@
+﻿@model ICollection<CategoryViewModel>
+@{
+    var modelo = new CategoryViewModel();
+}
+
+<div class="col-12 no-padding">
+    <header class="heading">
+        <h2 id="tituloFormulario">Gêneros</h2>
+        <div class="cursor-pointer float-right mb-2">
+            <a class="btn-sm btn-primary text-light"
+               asp-action="Add">Cadastrar gênero</a>
+        </div>
+    </header>
+    @{ await Html.RenderPartialAsync("_ValidationSummary"); }
+    <div id="gradeGeneros" class="no-padding">
+        <table id="tableGeneros"
+               class="table table-striped table-hover"
+               tabindex="0">
+            <thead>
+                <tr>
+                    <th ordem="0" id="th@(nameof(modelo.CategoryId))">
+                        @(modelo.DisplayName(nameof(modelo.CategoryId)))
+                    </th>
+                    <th ordem="0" id="th@(nameof(modelo.Description))">
+                        @(modelo.DisplayName(nameof(modelo.Description)))
+                    </th>
+                    <th ordem="0" id="th@(nameof(modelo.AboutUrl))">
+                        @(modelo.DisplayName(nameof(modelo.AboutUrl)))
+                    </th>
+                    <th class='grade-col-alterar'></th>
+                </tr>
+            </thead>
+            <tbody class="dados">
+                @foreach (var item in Model)
+                {
+                <tr>
+                    @{
+                        <td class='grade-col-campo'
+                            ng-bind="item.@(nameof(modelo.CategoryId))">
+                            @item.CategoryId
+                        </td>
+                        <td class='grade-col-campo'
+                            ng-bind="item.@(nameof(modelo.Description))">
+                            @item.Description
+                        </td>
+                        <td class='grade-col-campo'
+                            ng-bind="item.@(nameof(modelo.AboutUrl))">
+                            <a href="@item.AboutUrl" target="_blank">@item.AboutUrl</a>                            
+                        </td>
+                        <td class="grade-col-alterar">
+                            <a class='btn btn-primary btn-sm' tabindex="0"
+                               data-original-title='Alterar informações do gênero.'
+                               data-placement='auto'
+                               asp-area="Biblioteca" asp-controller="Category"
+                               asp-action="Edit"
+                               asp-route-categoryid="@item.CategoryId">
+                                <i class=""></i> Alterar
+                            </a>
+                        </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

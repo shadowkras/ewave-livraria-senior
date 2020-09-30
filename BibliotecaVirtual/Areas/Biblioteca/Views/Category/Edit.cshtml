@@ -1,0 +1,65 @@
+﻿@model CategoryViewModel
+@{
+    string ActionName = Html.ActionName();
+}
+
+<div>
+    <header class="heading">
+        @{
+            if (String.IsNullOrEmpty(ActionName) == false)
+            {
+                if (ActionName == "Add")
+                {
+                <h2 id="tituloFormulario">Adicionando gênero</h2>
+                }
+                else if (ActionName == "Edit")
+                {
+                    <h2 id="tituloFormulario">Alterando gênero</h2>
+                }
+            }
+        }
+    </header>
+</div>
+
+<form asp-action="@ActionName" method="post">
+    @{ await Html.RenderPartialAsync("_ValidationSummary"); }
+    <fieldset>
+        <div class="col-sm-12 row no-margin no-padding">
+            @{
+                if (ActionName == "Edit")
+                {
+                    <div class="col-sm-3 col-md-2 form-group">
+                        <label class="label" asp-for="@Model.CategoryId"></label>
+                        <label class="input">
+                            <i class="icon-append fa fa-key"></i>
+                            <input asp-for="@Model.CategoryId" class="form-control" readonly />
+                            <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                        </label>
+                    </div>
+                    <div class="col-sm-9 col-md-10 form-group">
+                        <label class="label" asp-for="@Model.Description"></label>
+                        <input asp-for="@Model.Description" class="form-control" />
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-12 col-md-12 form-group">
+                        <label class="label" asp-for="@Model.Description"></label>
+                        <input asp-for="@Model.Description" class="form-control" />
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                }
+
+                <div class="col-sm-12 col-md-12 form-group">
+                    <label class="label" asp-for="@Model.AboutUrl"></label>
+                    <input asp-for="@Model.AboutUrl" class="form-control" />
+                    <span asp-validation-for="@Model.AboutUrl" class="text-danger"></span>
+                </div>
+            }
+        </div>
+    </fieldset>
+
+    @{ await Html.RenderPartialAsync("_FormButtons",
+            new FormButtonsViewModel(nameof(CategoryViewModel.CategoryId), Model?.CategoryId)); }
+</form>

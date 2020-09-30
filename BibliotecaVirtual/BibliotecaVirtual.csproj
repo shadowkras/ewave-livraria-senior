@@ -10,10 +10,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BibliotercaVirtual.Application\BibliotercaVirtual.Application.csproj" />
+    <ProjectReference Include="..\BibliotecaVirtual.Application\BibliotecaVirtual.Application.csproj" />
+    <ProjectReference Include="..\BibliotecaVirtual.Data\BibliotecaVirtual.Data.csproj" />
   </ItemGroup>
 
 
