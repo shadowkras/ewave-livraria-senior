@@ -3,3 +3,9 @@
 ################################################################################
 
 /BibliotecaVirtual.Data/bin/Debug/netcoreapp3.1
+/.vs
+/BibliotecaVirtual/bin/Debug/netcoreapp3.1
+/BibliotecaVirtual/obj
+/BibliotecaVirtual.Data/obj
+/BibliotercaVirtual.Application/bin/Debug/netcoreapp3.1
+/BibliotercaVirtual.Application/obj
