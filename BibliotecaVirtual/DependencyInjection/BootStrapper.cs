@@ -1,9 +1,5 @@
 ﻿using BibliotecaVirtual.Application.Helpers;
-using BibliotecaVirtual.Application.Interfaces;
-using BibliotecaVirtual.Application.Services;
 using BibliotecaVirtual.Data.Extensions;
-using BibliotecaVirtual.Data.Interfaces;
-using BibliotecaVirtual.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
@@ -11,10 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using StructureMap;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BibliotecaVirtual.DependencyInjection
 {
