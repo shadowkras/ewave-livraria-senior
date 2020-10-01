@@ -1,9 +1,12 @@
 using System;
 using System.Globalization;
-using BibliotecaVirtual.Application.DependencyInjection;
 using BibliotecaVirtual.Application.Helpers;
+using BibliotecaVirtual.Application.Interfaces;
+using BibliotecaVirtual.Application.Services;
 using BibliotecaVirtual.Data;
-using BibliotecaVirtual.DependencyInjection;
+using BibliotecaVirtual.Data.Interfaces;
+using BibliotecaVirtual.Data.Repositories;
+using BibliotecaVirtual.Data.UnitOfWork;
 using BibliotecaVirtual.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +20,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using StructureMap;
 
 namespace BibliotecaVirtual
 {
@@ -84,7 +86,7 @@ namespace BibliotecaVirtual
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             }).AddDbContext<ApplicationDbContext>(options =>
             {
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             //services.BuildServiceProvider();
@@ -170,25 +172,31 @@ namespace BibliotecaVirtual
 
             #region Services
 
-            //services.AddTransient<IAuthorService, AuthorService>();
-            //services.AddScoped<IPublisherService, PublisherService>();
-            //services.AddScoped<ICategoryService, CategoryService>();
-            //services.AddScoped<IBookService, BookService>();
-            //services.AddTransient<IAuthorRepository, AuthorRepository>();
-            //services.AddScoped<IPublisherRepository, PublisherRepository>();
-            //services.AddScoped<ICategoryRepository, CategoryRepository>();
-            //services.AddScoped<IBookRepository, BookRepository>();
-            //services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
+            services.AddTransient<IApplicationUnitOfWork, ApplicationUnitOfWork>();
+            services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<IPublisherService, PublisherService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IPublisherRepository, PublisherRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IBookCategoryRepository, BookCategoryRepository>();
 
             #endregion
 
             #region Resolução de IoC
 
-            var container = BootStrapper.Container;
-            StructureMapDependencyResolver.ContainerAcesso = () => container;
-            container.Populate(services);
+            //var container = BootStrapper.Container;
+            //container.Configure(config =>
+            //{
+            //    config.AddRegistry(new BootstrapperApplication());
+            //    config.Populate(services);
+            //});
+            ////StructureMapDependencyResolver.ContainerAcesso = () => container;
+            ////container.Populate(services);
 
-            var serviceProvider = container.GetInstance<IServiceProvider>();
+            //var serviceProvider = container.GetInstance<IServiceProvider>();
 
             #endregion
         }

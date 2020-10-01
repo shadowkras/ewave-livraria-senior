@@ -8,7 +8,7 @@ namespace BibliotecaVirtual.Data.Entities
     /// <summary>
     /// Entidade de livro.
     /// </summary>
-    public class Book : IAutoMappleable
+    public class Book : IDatabaseEntity
     {
         /// <summary>
         /// Identificador do livro.

@@ -5,7 +5,7 @@ namespace BibliotecaVirtual.Data.Entities
     /// <summary>
     /// Entidade de relacionamento dos gêneros com os livros.
     /// </summary>
-    public class BookCategory : IAutoMappleable
+    public class BookCategory : IDatabaseEntity
     {
         /// <summary>
         /// Identificador do livro.

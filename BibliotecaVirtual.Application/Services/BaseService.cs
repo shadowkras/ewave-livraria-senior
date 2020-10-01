@@ -1,5 +1,4 @@
-﻿using BibliotecaVirtual.Application.Interfaces;
-using BibliotecaVirtual.Data.Interfaces;
+﻿using BibliotecaVirtual.Data.Interfaces;
 using System;
 using System.Threading.Tasks;
 

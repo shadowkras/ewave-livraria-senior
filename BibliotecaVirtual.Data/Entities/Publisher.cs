@@ -6,7 +6,7 @@ namespace BibliotecaVirtual.Data.Entities
     /// <summary>
     /// Entidade de editora de livros.
     /// </summary>
-    public class Publisher : IAutoMappleable
+    public class Publisher : IDatabaseEntity
     {
         /// <summary>
         /// Identificador da editora.

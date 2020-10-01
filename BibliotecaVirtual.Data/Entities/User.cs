@@ -7,7 +7,7 @@ namespace BibliotecaVirtual.Data.Entities
     /// <summary>
     /// Entidade complementar do usuário.
     /// </summary>
-    public class User : IAutoMappleable
+    public class User : IDatabaseEntity
     {
         /// <summary>
         /// Identificador do usuário.

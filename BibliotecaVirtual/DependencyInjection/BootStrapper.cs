@@ -1,5 +1,9 @@
 ﻿using BibliotecaVirtual.Application.Helpers;
+using BibliotecaVirtual.Application.Interfaces;
+using BibliotecaVirtual.Application.Services;
 using BibliotecaVirtual.Data.Extensions;
+using BibliotecaVirtual.Data.Interfaces;
+using BibliotecaVirtual.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
@@ -28,7 +32,7 @@ namespace BibliotecaVirtual.DependencyInjection
             var container = new Container(p =>
             {
                 //p.For<IHttpContextAccessor>().Use<HttpContextAccessor>();
-                p.AddRegistry<Application.IoC.BootstrapperApplication>();
+                //p.AddRegistry<Application.IoC.BootstrapperApplication>();
                 p.For<IOptionsFactory<Settings>>().Use<OptionsFactory<Settings>>();
                 //p.For<IOptionsFactory<EmailSettings>>().Use<OptionsFactory<EmailSettings>>();
                 p.For<IOptionsFactory<PasswordHasherOptions>>().Use<OptionsFactory<PasswordHasherOptions>>();
@@ -46,6 +50,8 @@ namespace BibliotecaVirtual.DependencyInjection
                 p.For<ILoggerFactory>().Use<LoggerFactory>();
                 p.For<IHostEnvironment>().Use<HostingEnvironment>();
                 p.For<IHostEnvironment>().Use<HostingEnvironment>();
+                p.For<IAuthorService>().Use<AuthorService>();
+                p.For<IAuthorRepository>().Use<AuthorRepository>();
             });
 
             #region Validação ambiente de programação
