@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaVirtual.Application.Services
 {
-    public class BaseService : IBaseService
+    public class BaseService
     {
         private readonly IApplicationUnitOfWork _uow;
         internal string ModelError = string.Empty;

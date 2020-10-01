@@ -10,7 +10,6 @@ namespace BibliotecaVirtual.Data
     public class ApplicationDbContext : GenericContext<ApplicationDbContext>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            :base(options)
         {
 
         }

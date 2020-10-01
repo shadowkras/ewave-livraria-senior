@@ -1,10 +1,11 @@
 ﻿using BibliotecaVirtual.Application.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BibliotecaVirtual.Application.Interfaces
 {
-    public interface IBookService : IBaseService
+    public interface IBookService : IBaseService, IDisposable
     {
         /// <summary>
         /// Cadastra um novo livro.

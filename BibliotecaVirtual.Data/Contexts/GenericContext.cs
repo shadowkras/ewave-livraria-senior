@@ -11,12 +11,6 @@ namespace BibliotecaVirtual.Data.Contexts
     /// <typeparam name="TContext">Context type.</typeparam>
     public abstract class GenericContext<TContext> : DbContext
     {
-        public GenericContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-
-        }
-
         #region Abstract methods
 
         #region Database configuration

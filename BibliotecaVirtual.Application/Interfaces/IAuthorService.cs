@@ -1,10 +1,11 @@
 ﻿using BibliotecaVirtual.Application.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BibliotecaVirtual.Application.Interfaces
 {
-    public interface IAuthorService : IBaseService
+    public interface IAuthorService : IBaseService, IDisposable
     {
         /// <summary>
         /// Cadastra um novo autor.

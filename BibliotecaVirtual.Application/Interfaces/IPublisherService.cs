@@ -1,10 +1,11 @@
 ﻿using BibliotecaVirtual.Application.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BibliotecaVirtual.Application.Interfaces
 {
-    public interface IPublisherService : IBaseService
+    public interface IPublisherService : IBaseService, IDisposable
     {
         /// <summary>
         /// Cadastra um novo editora.

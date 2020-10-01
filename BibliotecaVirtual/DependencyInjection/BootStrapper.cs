@@ -1,6 +1,9 @@
-﻿using BibliotecaVirtual.Application.Interfaces;
+﻿using BibliotecaVirtual.Application.Helpers;
+using BibliotecaVirtual.Application.Interfaces;
 using BibliotecaVirtual.Application.Services;
 using BibliotecaVirtual.Data.Extensions;
+using BibliotecaVirtual.Data.Interfaces;
+using BibliotecaVirtual.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
@@ -33,13 +36,13 @@ namespace BibliotecaVirtual.DependencyInjection
             {
                 //p.For<IHttpContextAccessor>().Use<HttpContextAccessor>();
                 p.AddRegistry<Application.IoC.BootstrapperApplication>();
-                //p.For<IOptionsFactory<Settings>>().Use<OptionsFactory<Settings>>();
+                p.For<IOptionsFactory<Settings>>().Use<OptionsFactory<Settings>>();
                 //p.For<IOptionsFactory<EmailSettings>>().Use<OptionsFactory<EmailSettings>>();
-                //p.For<IOptionsFactory<PasswordHasherOptions>>().Use<OptionsFactory<PasswordHasherOptions>>();
-                //p.For<IOptionsFactory<IdentityOptions>>().Use<OptionsFactory<IdentityOptions>>();
+                p.For<IOptionsFactory<PasswordHasherOptions>>().Use<OptionsFactory<PasswordHasherOptions>>();
+                p.For<IOptionsFactory<IdentityOptions>>().Use<OptionsFactory<IdentityOptions>>();
                 //p.For<IUserStore<IdentityUser>>().Use<UserStore<IdentityUser>>();
                 p.For<IOptions<IdentityOptions>>().Use<OptionsManager<IdentityOptions>>();
-                //p.For<IOptions<Settings>>().Use<OptionsManager<Settings>>();
+                p.For<IOptions<Settings>>().Use<OptionsManager<Settings>>();
                 //p.For<IOptions<EmailSettings>>().Use<OptionsManager<EmailSettings>>();
                 p.For<IPasswordHasher<IdentityUser>>().Use<PasswordHasher<IdentityUser>>();
                 p.For<IOptions<PasswordHasherOptions>>().Use<OptionsManager<PasswordHasherOptions>>();
@@ -48,6 +51,7 @@ namespace BibliotecaVirtual.DependencyInjection
                 p.For<ILogger<IdentityUser>>().Use<Logger<IdentityUser>>();
                 p.For<ILogger<UserManager<IdentityUser>>>().Use<Logger<UserManager<IdentityUser>>>();
                 p.For<ILoggerFactory>().Use<LoggerFactory>();
+                p.For<IHostEnvironment>().Use<HostingEnvironment>();
                 p.For<IHostEnvironment>().Use<HostingEnvironment>();
             });
 
@@ -60,14 +64,14 @@ namespace BibliotecaVirtual.DependencyInjection
                     container.AssertConfigurationIsValid();
                     Debug.WriteLine(container.WhatDidIScan());
                 }
-                catch (StructureMapConfigurationException Ex)
+                catch (StructureMapConfigurationException ex)
                 {
-                    Console.WriteLine(Ex);
+                    Console.WriteLine(ex);
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
-                    Debug.WriteLine(Ex.GetMessages());
-                    throw Ex;
+                    Debug.WriteLine(ex.GetMessages());
+                    throw ex;
                 }
             }
 

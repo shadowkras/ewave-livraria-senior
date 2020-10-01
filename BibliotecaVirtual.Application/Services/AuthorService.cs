@@ -124,5 +124,17 @@ namespace BibliotecaVirtual.Application.Services
         }
 
         #endregion
+
+        #region Dispose
+
+        /// <summary>
+        /// Liberar recursos da memória.
+        /// </summary>
+        public void Dispose()
+        {
+            _repository.Dispose();
+        }
+
+        #endregion
     }
 }

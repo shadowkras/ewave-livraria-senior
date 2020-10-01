@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using BibliotecaVirtual.Application.DependencyInjection;
+using BibliotecaVirtual.Application.Helpers;
 using BibliotecaVirtual.Application.Interfaces;
 using BibliotecaVirtual.Application.Services;
 using BibliotecaVirtual.Data;
@@ -19,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using StructureMap;
 
 namespace BibliotecaVirtual
@@ -38,6 +40,14 @@ namespace BibliotecaVirtual
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Obtendo informações do settings
+
+            services.Configure<Settings>(Configuration.GetSection(nameof(Settings)));
+
+            #endregion
+
+            #region Compressão
+
             services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Fastest);
             services.AddResponseCompression(options =>
             {
@@ -60,6 +70,8 @@ namespace BibliotecaVirtual
                 };
             });
 
+            #endregion
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -72,12 +84,12 @@ namespace BibliotecaVirtual
             services.AddDbContext<IdentityFrameworkDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-            services.AddDbContext<ApplicationDbContext>(options =>
+            }).AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //services.BuildServiceProvider();
 
             #region Default Identity, UI, Framework
 
@@ -90,6 +102,13 @@ namespace BibliotecaVirtual
               .AddEntityFrameworkStores<IdentityFrameworkDbContext>()
               .AddDefaultTokenProviders()
               .AddErrorDescriber<PortugueseIdentityErrorDescriber>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
 
             services.AddRazorPages();
 
@@ -132,6 +151,12 @@ namespace BibliotecaVirtual
 
             #endregion
 
+            #region Injeção de dependencia
+
+            services.AddOptions();
+
+            #endregion
+
             #region Mvc
 
             services.AddMvc(options =>
@@ -147,10 +172,11 @@ namespace BibliotecaVirtual
 
             #region Services
 
+            //services.AddTransient<IAuthorService, AuthorService>();
             //services.AddScoped<IPublisherService, PublisherService>();
             //services.AddScoped<ICategoryService, CategoryService>();
             //services.AddScoped<IBookService, BookService>();
-            //services.AddScoped<IAuthorRepository, AuthorRepository>();
+            //services.AddTransient<IAuthorRepository, AuthorRepository>();
             //services.AddScoped<IPublisherRepository, PublisherRepository>();
             //services.AddScoped<ICategoryRepository, CategoryRepository>();
             //services.AddScoped<IBookRepository, BookRepository>();
@@ -159,8 +185,6 @@ namespace BibliotecaVirtual
             #endregion
 
             #region Resolução de IoC
-
-            services.AddOptions();
 
             var container = BootStrapper.Container;
             StructureMapDependencyResolver.ContainerAcesso = () => container;
@@ -172,9 +196,9 @@ namespace BibliotecaVirtual
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, 
+        public void Configure(IApplicationBuilder app,
                               IWebHostEnvironment env,
-                              ApplicationDbContext dbContext)
+                              IOptions<Settings> settings)
         {
             #region Compressão
 
@@ -214,6 +238,7 @@ namespace BibliotecaVirtual
                     {
                         context.Context.Response.Headers.Add("cache-control", new[] { "public,max-age=31536000,immutable,vary-by-header=host;version" });
                         context.Context.Response.Headers.Add("Expires", new[] { DateTime.UtcNow.AddYears(1).ToString("R") });
+                        context.Context.Response.Headers.Add("Version", new[] { settings.Value.AplicacaoVersao });
                     }
                 },
             });
@@ -223,6 +248,16 @@ namespace BibliotecaVirtual
             #region Response Cache
 
             app.UseResponseCaching();
+
+            #endregion
+
+            #region Versão
+
+            //app.Use(async (context, next) =>
+            //{
+            //    context.Response.Headers.Append("Version", settings.Value.AplicacaoVersao);
+            //    await next();
+            //});
 
             #endregion
 
@@ -252,11 +287,48 @@ namespace BibliotecaVirtual
 
             #endregion
 
-            #region Migrations
+            #region Atualizar o banco de dados
 
-            dbContext.Database.Migrate();
+            UpdateDatabase(app);
 
             #endregion
+        }
+
+        /// <summary>
+        /// Atualiza o banco de dados executando os migrations dos contextos da aplicação e identity.
+        /// </summary>
+        /// <param name="app"></param>
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                                                             .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<IdentityFrameworkDbContext>())
+                {
+                    try
+                    {
+                        context.Database.Migrate();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debugger.Break();
+                        //TODO Logar e tratar
+                    }
+                }
+
+                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
+                {
+                    try
+                    {
+                        context.Database.Migrate();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debugger.Break();
+                        //TODO Logar e tratar
+                    }
+                }
+            }
         }
     }
 }

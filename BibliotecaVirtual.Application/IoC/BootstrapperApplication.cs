@@ -11,7 +11,7 @@ namespace BibliotecaVirtual.Application.IoC
         {
             Scan(scanner =>
             {
-                scanner.AssembliesFromApplicationBaseDirectory(p => p.FullName.Contains("BibliotecaVirtual"));
+                scanner.AssembliesAndExecutablesFromApplicationBaseDirectory(a => a.FullName.Contains("BibliotecaVirtual"));
                 scanner.WithDefaultConventions();
                 scanner.RegisterConcreteTypesAgainstTheFirstInterface();
             });
