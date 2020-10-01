@@ -1,0 +1,8 @@
+﻿@{ var visivel = ViewData.ModelState.ErrorCount > decimal.Zero ? string.Empty : "hidden"; }
+
+<div id="#summary" class="sumario alert alert-danger" @visivel>
+    <i class="fa-fw fa fa-exclamation-triangle"></i>
+    <button type="button" class="sumario-fechar close" onclick="$('div.sumario.alert').hide()">×</button>
+    <h5 id="mensagem-sumario">Verifique as informações do formulário e tente novamente!</h5>
+    <div class="sumario-lista" asp-validation-summary="All"></div>
+</div>

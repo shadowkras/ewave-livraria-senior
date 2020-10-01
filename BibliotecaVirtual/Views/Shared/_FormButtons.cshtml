@@ -1,0 +1,52 @@
+﻿@model FormButtonsViewModel
+
+@{
+    var ActionName = Html.ActionName();
+    var tagRoute = $"asp-route-{@Model.FormKey}='{@Model.FormValue}";
+}
+
+<div class="form-group">
+    <footer class="cadastro-botoes">
+        <section class="float-right">
+            <a id="botaoRetornar" class="btn btn-light btn-outline-dark cursor-pointer" tabindex="0"
+               asp-action="Index"
+               data-original-title="Retornar para a consulta." data-container="body">
+                Retornar
+            </a>
+            <input class="btn btn-success text-light" type="submit" value="Salvar" />
+            @if (ActionName == "Edit")
+            {
+                <input id="cadastro-botao-excluir" class="btn btn-danger text-light  cursor-pointer"
+                       name="Excluir" value="Delete" formaction="Delete" formmethod="post" type="submit" />
+            }
+        </section>
+    </footer>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function ()
+        {
+            var excluir = document.getElementById('cadastro-botao-excluir');
+            if (excluir)
+            {
+                var url = '?@(Model.FormKey)=' + @Model.FormValue;
+                excluir.href += url;
+            }
+        });
+
+        function FormDelete(e)
+        {
+            e.preventDefault();
+            var frm = document.getElementById('cadastro-botao-excluir').form;
+            frm.action = 'Delete';
+
+            try
+            {
+                /** Envia informações para o servidor. */
+                $(frm).submit();
+            }
+            catch (exception)
+            {
+                console.log(exception);
+            }
+        }
+    </script>
+</div>

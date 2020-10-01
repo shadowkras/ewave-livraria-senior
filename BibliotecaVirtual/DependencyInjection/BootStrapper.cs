@@ -49,9 +49,7 @@ namespace BibliotecaVirtual.DependencyInjection
                 p.For<ILogger<UserManager<IdentityUser>>>().Use<Logger<UserManager<IdentityUser>>>();
                 p.For<ILoggerFactory>().Use<LoggerFactory>();
                 p.For<IHostEnvironment>().Use<HostingEnvironment>();
-                p.For<IHostEnvironment>().Use<HostingEnvironment>();
-                p.For<IAuthorService>().Use<AuthorService>();
-                p.For<IAuthorRepository>().Use<AuthorRepository>();
+                p.For<IHostEnvironment>().Use<HostingEnvironment>();                
             });
 
             #region Validação ambiente de programação
