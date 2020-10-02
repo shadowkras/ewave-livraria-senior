@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
 {
@@ -12,7 +13,7 @@ namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
                 columns: table => new
                 {
                     AddressId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Endereco = table.Column<string>(nullable: false),
                     Numero = table.Column<string>(nullable: false),
                     Bairro = table.Column<string>(nullable: false),
@@ -30,7 +31,7 @@ namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
                 columns: table => new
                 {
                     AuthorId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -43,7 +44,7 @@ namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
                 columns: table => new
                 {
                     CategoryId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: false),
                     AboutUrl = table.Column<string>(nullable: false)
                 },
@@ -57,7 +58,7 @@ namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
                 columns: table => new
                 {
                     PublisherId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -70,7 +71,7 @@ namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
                 columns: table => new
                 {
                     SchoolId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: false),
                     CNPJ = table.Column<string>(nullable: false),
                     Telefone = table.Column<string>(nullable: false)
@@ -85,7 +86,7 @@ namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
                 columns: table => new
                 {
                     UserId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(nullable: false),
                     Sobrenome = table.Column<string>(nullable: false),
                     CPF = table.Column<string>(nullable: false),
@@ -105,7 +106,7 @@ namespace BibliotecaVirtual.Data.Migrations.ApplicationDb
                 columns: table => new
                 {
                     BookId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
                     Sinopsis = table.Column<string>(nullable: false),

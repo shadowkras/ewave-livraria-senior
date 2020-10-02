@@ -79,14 +79,20 @@ namespace BibliotecaVirtual
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddEntityFrameworkSqlServer();
+            //services.AddEntityFrameworkNpgsql();
+
+            var connectionString = new Npgsql.NpgsqlConnectionStringBuilder(Configuration.GetConnectionString("DefaultConnection"))
+            {
+                // Connecting to a local proxy that does not support ssl.
+                SslMode = Npgsql.SslMode.Disable
+            }.ToString();
 
             services.AddDbContext<IdentityFrameworkDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(connectionString);
             }).AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(connectionString);
             });
 
             //services.BuildServiceProvider();
@@ -338,3 +344,5 @@ namespace BibliotecaVirtual
         }
     }
 }
+
+

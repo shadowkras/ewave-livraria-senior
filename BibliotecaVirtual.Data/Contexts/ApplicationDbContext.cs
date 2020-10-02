@@ -3,6 +3,7 @@ using BibliotecaVirtual.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
 
 namespace BibliotecaVirtual.Data
@@ -23,6 +24,8 @@ namespace BibliotecaVirtual.Data
 
         #region Abstract Classes
 
+        
+
         public override void DatabaseConfig(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new ConfigurationBuilder()
@@ -32,7 +35,10 @@ namespace BibliotecaVirtual.Data
 
             var database = config["Database"];
             var connectionString = config["ConnectionStrings:DefaultConnection"];
-            optionsBuilder.UseSqlServer(connectionString);
+
+            Console.WriteLine("String de conexão (App): " + connectionString);
+
+            optionsBuilder.UseNpgsql(connectionString);
         }
 
         public override void IgnoreEntities(ModelBuilder modelBuilder)

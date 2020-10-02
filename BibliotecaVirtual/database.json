@@ -1,5 +1,7 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=aspnet-BibliotecaVirtual;Trusted_Connection=True;MultipleActiveResultSets=true"
-  },
+    "DocketDbPath": "/cloudsql",
+    "InstanceConnectionName": "e-topic-291313:us-west2:postgresql",
+    "DefaultConnection": "Host = 34.94.151.14; Database = aspnet-BibliotecaVirtual; User ID = postgres; Password = 8DevGMARKngP;  Port = 5432;  Pooling = true"
+  }
 }

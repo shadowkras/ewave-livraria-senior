@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ActiveDebugProfile>Docker</ActiveDebugProfile>
+    <GoogleCloudPublishChoice>Gke</GoogleCloudPublishChoice>
+    <GoogleKubernetesEnginePublishDeploymentName>biblioteca-virtual</GoogleKubernetesEnginePublishDeploymentName>
+    <GoogleKubernetesEnginePublishVersion>20201002t134552</GoogleKubernetesEnginePublishVersion>
+    <GoogleKubernetesEnginePublishReplicas>3</GoogleKubernetesEnginePublishReplicas>
+    <GoogleKubernetesEnginePublishExposeService>False</GoogleKubernetesEnginePublishExposeService>
+    <GoogleKubernetesEnginePublishExposePublicService>False</GoogleKubernetesEnginePublishExposePublicService>
+    <GoogleKubernetesEnginePublishOpenWebsite>False</GoogleKubernetesEnginePublishOpenWebsite>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>
