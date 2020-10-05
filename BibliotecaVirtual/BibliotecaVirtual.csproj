@@ -23,6 +23,11 @@
 
   <ItemGroup>
     <None Remove="..\.dockerignore" />
+    <None Remove="docker-compose.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="docker-compose.yml" />
   </ItemGroup>
 
 

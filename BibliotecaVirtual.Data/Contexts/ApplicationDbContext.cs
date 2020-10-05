@@ -22,17 +22,19 @@ namespace BibliotecaVirtual.Data
 
         #endregion
 
-        #region Abstract Classes
-
-        
+        #region Abstract Classes        
 
         public override void DatabaseConfig(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder()
-                       .SetBasePath(Directory.GetCurrentDirectory())
-                       .AddJsonFile("database.json", optional: false, reloadOnChange: true)
-                       .Build();
+            var configBuilder = new ConfigurationBuilder()
+                       .SetBasePath(Directory.GetCurrentDirectory());
 
+            if (System.Diagnostics.Debugger.IsAttached == false)
+                configBuilder.AddJsonFile("database.json", optional: false, reloadOnChange: true);
+            else
+                configBuilder.AddJsonFile("database.Development.json", optional: false, reloadOnChange: true);
+
+            var config = configBuilder.Build();
             var database = config["Database"];
             var connectionString = config["ConnectionStrings:DefaultConnection"];
 

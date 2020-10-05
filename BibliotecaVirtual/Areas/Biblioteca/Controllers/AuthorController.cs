@@ -36,6 +36,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
 
         #region Métodos de View
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var authors = await _authorService.ObtainAuthors();

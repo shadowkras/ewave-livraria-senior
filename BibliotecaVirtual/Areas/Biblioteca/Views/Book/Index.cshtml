@@ -5,11 +5,14 @@
 <div class="col-12 no-padding">
     <header class="heading">
         <h2 id="tituloFormulario">Livros</h2>
-        <div class="cursor-pointer float-right botao-cadastrar-livro">
-            <a class="btn-sm btn-primary text-light"
-               asp-area="Biblioteca" asp-controller="Book"
-               asp-action="Add">Cadastrar livro</a>
-        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="cursor-pointer float-right botao-cadastrar-livro">
+                <a class="btn-sm btn-primary text-light"
+                   asp-area="Biblioteca" asp-controller="Book"
+                   asp-action="Add">Cadastrar livro</a>
+            </div>
+        }
     </header>
     @{ await Html.RenderPartialAsync("_ValidationSummary"); }
     <div id="gradeLivros" class="no-padding">
@@ -61,12 +64,15 @@
                         {{getPublishDate(item)}}
                     </td>
                     <td class="grade-col-alterar">
-                        <a class='btn btn-primary btn-sm' tabindex="0"
-                           data-original-title='Alterar informações do livro.'
-                           data-placement='auto'
-                           :href="registroConsultar('@(Url.GetAbsoluteUrl("Book", "Edit"))', item)">
-                            <i class=""></i> Alterar
-                        </a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class='btn btn-primary btn-sm' tabindex="0"
+                               data-original-title='Alterar informações do livro.'
+                               data-placement='auto'
+                               :href="registroConsultar('@(Url.GetAbsoluteUrl("Book", "Edit"))', item)">
+                                <i class=""></i> Alterar
+                            </a>
+                        }
                     </td>
                 </tr>
             </tbody>

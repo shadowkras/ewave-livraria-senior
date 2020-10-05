@@ -37,7 +37,10 @@ namespace BibliotecaVirtual
         private static void AddDbConfiguration(WebHostBuilderContext context, IConfigurationBuilder builder)
         {
             var configuration = builder.Build();
-            builder.AddJsonFile("database.json", optional: false, reloadOnChange: true);
+            if(System.Diagnostics.Debugger.IsAttached == false)
+                builder.AddJsonFile("database.json", optional: false, reloadOnChange: true);
+            else
+                builder.AddJsonFile("database.Development.json", optional: false, reloadOnChange: true);
         }
 
         #endregion

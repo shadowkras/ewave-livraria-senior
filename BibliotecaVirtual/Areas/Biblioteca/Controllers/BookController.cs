@@ -34,6 +34,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
 
         #endregion
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(nameof(Index), null);

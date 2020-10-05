@@ -1,0 +1,39 @@
+version: "3"
+volumes:
+      appdata:
+networks:
+       backend:
+services:
+      postgresql:
+        image: "mcr.microsoft.com/mssql/server:2017-latest"
+        volumes:
+          - appdata:/var/opt/mssql/data
+          - ./scripts:/docker-entrypoint-initdb.d
+        networks:
+          - default
+        environment:
+          - SA_PASSWORD=!P4ssw0rd
+          - ACCEPT_EULA=Y
+        ports:
+          - 1433:1433
+      eventstore:
+        image: "eventstore/eventstore"
+        networks:
+          - default
+        ports:
+          - 2113:2113
+          - 1113:1113
+      api:
+        build:
+           context: .
+           dockerfile: Dockerfile.dev
+        networks:
+           - default 
+        ports:
+           - 5000:80
+        environment:
+           - DBHOST=postgresql
+           - ASPNETCORE_ENVIRONMENT=Development
+        depends_on:
+           - postgresql
+           - eventstore

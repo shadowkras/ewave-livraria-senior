@@ -7,9 +7,12 @@
     <header class="heading">
         <h2 id="tituloFormulario">Autores</h2>
         <div class="cursor-pointer float-right mb-2">
-            <a class="btn-sm btn-primary text-light"
-               asp-area="Biblioteca" asp-controller="Author"
-               asp-action="Add">Cadastrar autor</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="btn-sm btn-primary text-light"
+                   asp-area="Biblioteca" asp-controller="Author"
+                   asp-action="Add">Cadastrar autor</a>
+            }
         </div>
     </header>
     @{ await Html.RenderPartialAsync("_ValidationSummary"); }
@@ -42,14 +45,17 @@
                                 @item.Name
                             </td>
                             <td class="grade-col-alterar">
-                                <a class='btn btn-primary btn-sm' tabindex="0"
-                                   data-original-title='Alterar informações do autor.'
-                                   data-placement='auto'
-                                   asp-area="Biblioteca" asp-controller="Author"
-                                   asp-action="Edit"
-                                   asp-route-authorid="@item.AuthorId">
-                                    <i class=""></i> Alterar
-                                </a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a class='btn btn-primary btn-sm' tabindex="0"
+                                       data-original-title='Alterar informações do autor.'
+                                       data-placement='auto'
+                                       asp-area="Biblioteca" asp-controller="Author"
+                                       asp-action="Edit"
+                                       asp-route-authorid="@item.AuthorId">
+                                        <i class=""></i> Alterar
+                                    </a>
+                                }
                             </td>
                         }
                     </tr>

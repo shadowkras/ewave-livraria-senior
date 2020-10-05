@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaVirtual.Data", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaVirtual.Application", "BibliotecaVirtual.Application\BibliotecaVirtual.Application.csproj", "{4AFFA1BE-CEE9-4984-85D9-5C6E325100B9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Front", "1.1 Front", "{68B1DC00-2F48-421B-BAB7-28A2B547DB3E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

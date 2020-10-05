@@ -92,7 +92,7 @@ namespace BibliotecaVirtual.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Login inválido, confira o e-mail e senha e tente novamente.");
                     return Page();
                 }
             }
