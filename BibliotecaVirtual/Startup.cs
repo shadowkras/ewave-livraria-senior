@@ -188,6 +188,7 @@ namespace BibliotecaVirtual
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookCategoryRepository, BookCategoryRepository>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             #endregion
 
