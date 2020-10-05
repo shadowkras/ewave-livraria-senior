@@ -8,7 +8,10 @@ using BibliotecaVirtual.Data.Interfaces;
 using BibliotecaVirtual.Data.Repositories;
 using BibliotecaVirtual.Data.UnitOfWork;
 using BibliotecaVirtual.Helpers;
+using Google.Cloud.AspNetCore.DataProtection.Kms;
+using Google.Cloud.AspNetCore.DataProtection.Storage;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -204,6 +207,19 @@ namespace BibliotecaVirtual
             ////container.Populate(services);
 
             //var serviceProvider = container.GetInstance<IServiceProvider>();
+
+            #endregion
+
+            #region Google Cloud Keys
+
+            if (Environment.IsProduction() == true)
+            {
+                services.AddDataProtection()
+                        .PersistKeysToGoogleCloudStorage(
+                            "my-bucket", "DataProtectionKeys.xml")
+                        .ProtectKeysWithGoogleKms(
+                            "projects/e-topic-291313/locations/global/keyRings/BibliotecaVirtualKey/cryptoKeys/BibliotecaVirtualKey");
+            }
 
             #endregion
         }
