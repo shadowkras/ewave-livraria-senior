@@ -32,3 +32,4 @@
  Dificuldades:
  A minha maior dificuldade foi encontrar um datacenter no Google Cloud que tinha recursos suficientes para me permitir trabalhar no desenvolvimento. Pois perdia muito tempo compilando a aplicação e subindo ela para o conteiner no GCloud, apenas para depois de alguns minutos receber uma mensagem de que a maquina não possuia recursos suficientes e tentar mais tarde.
  Mesmo com essa dificuldade, foi um aprendizado tentar fazer a aplicação se comunicar com o banco de dados na nuvem enquanto compilando, e com uma maquina do mesmo cluster quando publicada na nuvem. Pois o IP externo não estava disponível internamente.
+ A escolha do banco de dados PostgreSQL foi por ser uma solução grátis, ao contrário de utilizar o mssql (que custa 30 dolares ao mês). No entanto, tive alguma dificuldade em levantar o banco no GCloud também, por algumas particularidades da própria Google na imagem do container.
