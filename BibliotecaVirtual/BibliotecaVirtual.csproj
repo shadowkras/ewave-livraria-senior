@@ -25,10 +25,12 @@
 
   <ItemGroup>
     <None Remove="..\.dockerignore" />
+    <None Remove="docker-compose.Development.yml" />
     <None Remove="docker-compose.yml" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="docker-compose.Development.yml" />
     <Content Include="docker-compose.yml" />
   </ItemGroup>
 

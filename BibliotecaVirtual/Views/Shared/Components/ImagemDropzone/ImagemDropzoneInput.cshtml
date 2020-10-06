@@ -1,5 +1,6 @@
 ﻿@model ImagemDropzoneViewModel
 
+<cache vary-by-header="Version">
     <section class="imagem-dropzone">
         <section class="imagem-dropzone-borda">
             <p class="imagem-dropzone-texto no-margin">
@@ -9,9 +10,10 @@
             <input type="file" accept="@Model.ExtensoesImagensAceitas" />
             <section class="uploader-btn">
                 <a class="btn imagem-dropzone-btn-remover cursor-pointer" tabindex="0"
-                   data-original-title="Remover imagem.">
+                    data-original-title="Remover imagem.">
                     Remover
                 </a>
             </section>
         </section>
     </section>
+</cache>
