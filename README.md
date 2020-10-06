@@ -15,7 +15,7 @@
 <p>A aplicação de serviços constitui no meio-termo entre as controllers e os repositórios, utilizando de uma DTO (data transfer object) para transportar essas informações dos repositórios para as controllers na primeira camada.</p>
 <p>Por fim, a aplicação de dados utiliza de classes para realizar o mapeamento das tabelas com o EntityFramework. E disponibiliza repositórios para serem utilizados pelas camadas superiores, por meio de interfaces. Foi criado um repositório base para centralizar os métodos mais utilizados pelos repositórios, para atender os princípios do DRY (don't repeat yourself).</p>
 
-Uma prévia da aplicação pode ser encontrada no endereço: 
+Uma prévia da aplicação pode ser encontrada no endereço: <a href="https://e-topic-291313.appspot.com/" target="_blank">https://e-topic-291313.appspot.com/</a>
 
 <P>Sobre os requerimentos do projeto:</p>
 <ul>
