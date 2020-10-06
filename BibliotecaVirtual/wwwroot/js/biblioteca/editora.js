@@ -24,10 +24,13 @@ function editora()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.Sucesso)
                             {
-                                let data = response;
+                                let data = response.Dados;
                                 editora.vueSelect.atualizarLista(data);
+                            }
+                            else {
+                                editora.vueSelect.atualizarLista([]);
                             }
 
                             $('#selectPublisher .carregando').addClass('hidden');

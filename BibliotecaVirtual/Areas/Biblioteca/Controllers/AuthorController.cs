@@ -1,5 +1,7 @@
-﻿using BibliotecaVirtual.Application.Interfaces;
+﻿using BibliotecaVirtual.Application.Enums;
+using BibliotecaVirtual.Application.Interfaces;
 using BibliotecaVirtual.Application.ViewModels;
+using BibliotecaVirtual.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,7 +10,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
 {
     [Authorize]
     [Area("Biblioteca")]
-    public class AuthorController : Controller
+    public class AuthorController : BaseController
     {
         private readonly IAuthorService _authorService;
 
@@ -21,19 +23,6 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
 
         #endregion
 
-        #region Métodos privados
-
-        /// <summary>
-        /// Adiciona uma mensagem de erro ao model state da view model.
-        /// </summary>
-        /// <param name="message"></param>
-        private void AddModelError(string message)
-        {
-            ModelState.AddModelError(string.Empty, message);
-        }
-
-        #endregion
-
         #region Métodos de View
 
         [AllowAnonymous]
@@ -43,12 +32,14 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
             return View(nameof(Index), authors);
         }
 
+        [Authorize(Roles = UserRoles.Moderator)]
         [HttpGet]
         public IActionResult Add()
         {
             return View(nameof(Edit), new AuthorViewModel());
         }
 
+        [Authorize(Roles = UserRoles.Moderator)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(AuthorViewModel viewModel)
@@ -64,6 +55,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
             return RedirectToAction(nameof(Edit), new { author.AuthorId });
         }
 
+        [Authorize(Roles = UserRoles.Moderator)]
         [HttpGet]
         public async Task<IActionResult> Edit(int authorId)
         {
@@ -71,6 +63,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
             return View(nameof(Edit), author);
         }
 
+        [Authorize(Roles = UserRoles.Moderator)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(AuthorViewModel viewModel)
@@ -88,6 +81,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
             }
         }
 
+        [Authorize(Roles = UserRoles.Moderator)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int authorId)
@@ -109,7 +103,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
         public async Task<IActionResult> GetAuthors()
         {
             var authors = await _authorService.ObtainAuthors();
-            return Json(authors);
+            return ReturnApi(true, string.Empty, authors);
         }
 
         #endregion

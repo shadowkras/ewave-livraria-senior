@@ -1,5 +1,6 @@
 ﻿using BibliotecaVirtual.Application.Interfaces;
 using BibliotecaVirtual.Application.ViewModels;
+using BibliotecaVirtual.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
 {
     [Authorize]
     [Area("Biblioteca")]
-    public class PublisherController : Controller
+    public class PublisherController : BaseController
     {
         private readonly IPublisherService _publisherService;
 
@@ -18,19 +19,6 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
         {
             _publisherService = publisherService;
         } 
-
-        #endregion
-
-        #region Métodos privados
-
-        /// <summary>
-        /// Adiciona uma mensagem de erro ao model state da view model.
-        /// </summary>
-        /// <param name="message"></param>
-        private void AddModelError(string message)
-        {
-            ModelState.AddModelError(string.Empty, message);
-        }
 
         #endregion
 
@@ -110,7 +98,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
         public async Task<IActionResult> GetPublishers()
         {
             var publishers = await _publisherService.ObtainPublishers();
-            return Json(publishers);
+            return ReturnApi(true, string.Empty, publishers);
         }        
 
         #endregion

@@ -24,10 +24,13 @@ function categoria()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.Sucesso)
                             {
-                                let data = response;
+                                let data = response.Dados;
                                 categoria.vueSelect.atualizarLista(data);
+                            }
+                            else {
+                                categoria.vueSelect.atualizarLista([]);
                             }
 
                             $('#selectCategory .carregando').addClass('hidden');

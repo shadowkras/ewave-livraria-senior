@@ -22,21 +22,21 @@ namespace BibliotecaVirtual.Application.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Criticas {
+    public class Criticas {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Criticas() {
+        public Criticas() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BibliotecaVirtual.Application.Resources.Criticas", typeof(Criticas).Assembly);
@@ -51,7 +51,7 @@ namespace BibliotecaVirtual.Application.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace BibliotecaVirtual.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Este campo é requerido..
         /// </summary>
-        internal static string Campo_Requerido {
+        public static string Campo_Requerido {
             get {
                 return ResourceManager.GetString("Campo_Requerido", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace BibliotecaVirtual.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} já cadastrada..
         /// </summary>
-        internal static string Ja_Cadastrada_0 {
+        public static string Ja_Cadastrada_0 {
             get {
                 return ResourceManager.GetString("Ja_Cadastrada_0", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace BibliotecaVirtual.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} já cadastrado..
         /// </summary>
-        internal static string Ja_Cadastrado_0 {
+        public static string Ja_Cadastrado_0 {
             get {
                 return ResourceManager.GetString("Ja_Cadastrado_0", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace BibliotecaVirtual.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Já existe {0}..
         /// </summary>
-        internal static string Ja_Existe_0 {
+        public static string Ja_Existe_0 {
             get {
                 return ResourceManager.GetString("Ja_Existe_0", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace BibliotecaVirtual.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Não foi possível {0}..
         /// </summary>
-        internal static string Possivel_0 {
+        public static string Possivel_0 {
             get {
                 return ResourceManager.GetString("Possivel_0", resourceCulture);
             }

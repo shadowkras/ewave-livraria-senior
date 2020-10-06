@@ -24,9 +24,9 @@ function livros()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.Sucesso)
                             {
-                                livros.vueSelect.atualizarLista(response);
+                                livros.vueSelect.atualizarLista(response.Dados);
                             }
                             else
                             {

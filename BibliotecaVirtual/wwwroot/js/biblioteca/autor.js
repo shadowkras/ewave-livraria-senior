@@ -25,10 +25,13 @@ function autor()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.Sucesso)
                             {
-                                let data = response;
+                                let data = response.Dados;
                                 autor.vueSelect.atualizarLista(data);
+                            }
+                            else {
+                                autor.vueSelect.atualizarLista([]);
                             }
 
                             $('#selectAuthor .carregando').addClass('hidden');

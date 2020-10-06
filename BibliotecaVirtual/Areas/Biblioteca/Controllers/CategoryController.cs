@@ -1,5 +1,6 @@
 ﻿using BibliotecaVirtual.Application.Interfaces;
 using BibliotecaVirtual.Application.ViewModels;
+using BibliotecaVirtual.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
 {
     [Authorize]
     [Area("Biblioteca")]
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
 
@@ -18,19 +19,6 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
         {
             _categoryService = categoryService;
         } 
-
-        #endregion
-
-        #region Métodos privados
-
-        /// <summary>
-        /// Adiciona uma mensagem de erro ao model state da view model.
-        /// </summary>
-        /// <param name="message"></param>
-        private void AddModelError(string message)
-        {
-            ModelState.AddModelError(string.Empty, message);
-        }
 
         #endregion
 
@@ -108,7 +96,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
         public async Task<IActionResult> GetCategories()
         {
             var categories = await _categoryService.ObtainCategories();
-            return Json(categories);
+            return ReturnApi(true, string.Empty, categories);
         }
 
         #endregion

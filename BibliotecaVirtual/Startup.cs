@@ -148,6 +148,45 @@ namespace BibliotecaVirtual
                 options.UseCaseSensitivePaths = false;
             });
 
+            services.Configure<MvcOptions>(options =>
+            {
+                #region Cache Profiles
+
+                options.CacheProfiles.Add("UserYearCache", new CacheProfile()
+                {
+                    Location = ResponseCacheLocation.Client,
+                    VaryByHeader = "User-Agent,Accept-Encoding,Version",
+                    VaryByQueryKeys = new string[] { "*" },
+                    Duration = 86400 * 365, //Um ano
+                });
+
+                options.CacheProfiles.Add("UserDayCache", new CacheProfile()
+                {
+                    Location = ResponseCacheLocation.Client,
+                    VaryByHeader = "User-Agent,Accept-Encoding,Version",
+                    VaryByQueryKeys = new string[] { "*" },
+                    Duration = 86400 * 1, //Um dia
+                });
+
+                options.CacheProfiles.Add("UserHourCache", new CacheProfile()
+                {
+                    Location = ResponseCacheLocation.Client,
+                    VaryByHeader = "User-Agent,Accept-Encoding,Version",
+                    VaryByQueryKeys = new string[] { "*" },
+                    Duration = 60 * 60, //Uma hora
+                });
+
+                options.CacheProfiles.Add("UserMinuteCache", new CacheProfile()
+                {
+                    Location = ResponseCacheLocation.Client,
+                    VaryByHeader = "User-Agent,Accept-Encoding,Version",
+                    VaryByQueryKeys = new string[] { "*" },
+                    Duration = 60, //Um minuto
+                });
+
+                #endregion
+            });
+
             #endregion
 
             #region Cookie Policy

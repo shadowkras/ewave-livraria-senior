@@ -1,5 +1,6 @@
 ﻿using BibliotecaVirtual.Application.Interfaces;
 using BibliotecaVirtual.Application.ViewModels;
+using BibliotecaVirtual.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
 {
     [Authorize]
     [Area("Biblioteca")]
-    public class BookController : Controller
+    public class BookController : BaseController
     {
         private readonly IBookService _bookService;
 
@@ -17,19 +18,6 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
         public BookController(IBookService bookService)
         {
             _bookService = bookService;
-        }
-
-        #endregion
-
-        #region Métodos privados
-
-        /// <summary>
-        /// Adiciona uma mensagem de erro ao model state da view model.
-        /// </summary>
-        /// <param name="message"></param>
-        private void AddModelError(string message)
-        {
-            ModelState.AddModelError(string.Empty, message);
         }
 
         #endregion
