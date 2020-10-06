@@ -28,3 +28,7 @@
 <li>Mensageria</li>, também por falta de tempo. Mas penso em implementar um chat para usuários conversarem entre si utilizando a biblioteca SignalR da microsoft, assim como criar notificações para os usuários de novos livros e lembretes de quando um livro que alugaram está perto da data de devolução. Este tipo de notificação pode ser criado facilmente consultando o registro de livros emprestados e comparando com a data de devolução dos mesmos.
 <li>Frontend em angular. Eu cheguei a criar o projeto do front-end, mas não conseguiria entregar algo apresentável no tempo que foi dado.</li>
  </ul>
+ 
+ Dificuldades:
+ A minha maior dificuldade foi encontrar um datacenter no Google Cloud que tinha recursos suficientes para me permitir trabalhar no desenvolvimento. Pois perdia muito tempo compilando a aplicação e subindo ela para o conteiner no GCloud, apenas para depois de alguns minutos receber uma mensagem de que a maquina não possuia recursos suficientes e tentar mais tarde.
+ Mesmo com essa dificuldade, foi um aprendizado tentar fazer a aplicação se comunicar com o banco de dados na nuvem enquanto compilando, e com uma maquina do mesmo cluster quando publicada na nuvem. Pois o IP externo não estava disponível internamente.
