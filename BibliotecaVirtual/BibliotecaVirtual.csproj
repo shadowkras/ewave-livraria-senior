@@ -33,6 +33,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Components\ImagemDropzone\ImagemDropzoneInput.cshtml" />
+    <None Include="wwwroot\js\biblioteca\autor.js" />
+    <None Include="wwwroot\js\biblioteca\categoria.js" />
+    <None Include="wwwroot\js\biblioteca\editora.js" />
+    <None Include="wwwroot\js\biblioteca\image-dropzone.js" />
+    <None Include="wwwroot\js\biblioteca\livros.js" />
+    <None Include="wwwroot\js\biblioteca\site.js" />
+    <None Include="wwwroot\js\biblioteca\tooltips.js" />
+    <None Include="wwwroot\js\bundles\biblioteca.js" />
+    <None Include="wwwroot\js\bundles\biblioteca.min.js" />
+    <None Include="wwwroot\lib\popper\popper.js" />
+    <None Include="wwwroot\lib\popper\popper.min.js" />
+    <None Include="wwwroot\lib\vue\vue.js" />
+    <None Include="wwwroot\lib\vue\vue.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="app.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

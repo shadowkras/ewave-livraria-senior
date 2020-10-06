@@ -1,0 +1,16 @@
+﻿/* Classes para ajudar na estilização. */
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}

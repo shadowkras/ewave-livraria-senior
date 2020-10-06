@@ -1,0 +1,58 @@
+﻿<cache vary-by-header="Version" vary-by-user="true">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand text-light" 
+                   asp-area="" 
+                   asp-controller="Home" 
+                   asp-action="Index">Biblioteca Virtual</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" 
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area="Biblioteca"
+                               asp-controller="Book"
+                               asp-action="Index">Livros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area="Biblioteca"
+                               asp-controller="Category"
+                               asp-action="Index">Gêneros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area="Biblioteca"
+                               asp-controller="Author"
+                               asp-action="Index">Autores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area="Biblioteca"
+                               asp-controller="Publisher"
+                               asp-action="Index">Editoras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Contact">Contato</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="About">Sobre</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</cache>

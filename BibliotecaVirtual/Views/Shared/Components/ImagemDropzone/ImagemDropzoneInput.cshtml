@@ -1,0 +1,17 @@
+﻿@model ImagemDropzoneViewModel
+
+    <section class="imagem-dropzone">
+        <section class="imagem-dropzone-borda">
+            <p class="imagem-dropzone-texto no-margin">
+                Arraste e solte ou clique aqui para adicionar.
+            </p>
+            <section class="imagem-dropzone-src"></section>
+            <input type="file" accept="@Model.ExtensoesImagensAceitas" />
+            <section class="uploader-btn">
+                <a class="btn imagem-dropzone-btn-remover cursor-pointer" tabindex="0"
+                   data-original-title="Remover imagem.">
+                    Remover
+                </a>
+            </section>
+        </section>
+    </section>

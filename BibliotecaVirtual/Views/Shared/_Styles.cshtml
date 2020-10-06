@@ -1,0 +1,12 @@
+﻿@if (System.Diagnostics.Debugger.IsAttached == true)
+{
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/bundles/biblioteca.css"  asp-append-version="true" />
+}
+else
+{
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    <link rel="stylesheet" href="~/css/bundles/biblioteca.min.css" asp-append-version="true" />
+}
