@@ -26,7 +26,7 @@
 
 <p>O que ficou pendente (TO-DO):</p>
 <ul>
-<li>Mensageria</li>, também por falta de tempo. Mas penso em implementar um chat para usuários conversarem entre si utilizando a biblioteca SignalR da microsoft, assim como criar notificações para os usuários de novos livros e lembretes de quando um livro que alugaram está perto da data de devolução. Este tipo de notificação pode ser criado facilmente consultando o registro de livros emprestados e comparando com a data de devolução dos mesmos.
+<li>Mensageria, também por falta de tempo. Mas penso em implementar um chat para usuários conversarem entre si utilizando a biblioteca SignalR da microsoft, assim como criar notificações para os usuários de novos livros e lembretes de quando um livro que alugaram está perto da data de devolução. Este tipo de notificação pode ser criado facilmente consultando o registro de livros emprestados e comparando com a data de devolução dos mesmos.</li>
 <li>Frontend em angular. Eu cheguei a criar o projeto do front-end, mas não conseguiria entregar algo apresentável no tempo que foi dado.</li>
  </ul>
  
