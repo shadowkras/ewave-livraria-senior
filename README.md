@@ -1,6 +1,6 @@
 # ewave-livraria-senior
 
-﻿<p>Este projeto é uma prova de aptidão realizada pela Ewave do Brasil (<a href="https://github.com/shadowkras/ewave-livraria-senior/issues/1">ver issue</a>) Este projeto é a <b>Biblioteca Virtual</b>. Um projeto de uma livraria utilizando Asp.NET Core, com EntityFramework e utilizando arquitetura DDD (Domain-Driven Design).</p>
+﻿<p>Este projeto é uma prova de aptidão realizada pela Ewave do Brasil (<a href="https://github.com/shadowkras/ewave-livraria-senior/issues/1">ver issue</a>) Este projeto é a <b>Livraria To-Do</b>. Um projeto de uma livraria utilizando Asp.NET Core, com EntityFramework e utilizando arquitetura DDD (Domain-Driven Design).</p>
 <br />
 <p>Ela foi construída por <a href="emailto:lsr.sena@gmail.com">Leonardo Sena</a>, e pode ser encontrado no <a href="https://github.com/shadowkras/ewave-livraria-senior/">Github</a> para download.</p>
 
@@ -17,7 +17,6 @@
 <li>Testes de Unidade: A solução possui um projeto com testes unitários das controllers criadas pela aplicação.</li>
 <li>Conteinerização: A aplicação funciona em docker. Apesar de não conseguir realizar todas as configurações, ela levanta no docker desktop e se comunica com um banco em conteiner no Google Cloud. Ela também pode ser publicada em um container em kubernetes do Google Clouds, mas esbarrei em um problema dop cabeçalho encriptados dos requests de login não serem aceitos entre o container do banco e da aplicação, e apesar de ter tentado algumas soluções para corrigir, acredito que apenas mudando o tipo do container no google (flex) para uma maquina virtual resolve este problema.</li>
 <li>REST: A aplicação possui endpoints REST.</li>
-<li>Mensageria</li>
 <li>Serviços de Cache: A aplicação utiliza-se de três tipos de cacheamento. Cacheamento de views, de respostas e de memória (IMemoryCache da Microsoft).
 <li>Kubernetes: A aplicação roda em um containers em kubernetes no Google Cloud.</li>
 <li>DDD: A aplicação foi arquitetada utilizando a estrutura DDD.</li>
@@ -26,5 +25,6 @@
 
 <p>O que ficou pendente (TO-DO):</p>
 <ul>
+<li>Mensageria</li>, também por falta de tempo. Mas penso em implementar um chat para usuários conversarem entre si utilizando a biblioteca SignalR da microsoft, assim como criar notificações para os usuários de novos livros e lembretes de quando um livro que alugaram está perto da data de devolução. Este tipo de notificação pode ser criado facilmente consultando o registro de livros emprestados e comparando com a data de devolução dos mesmos.
 <li>Frontend em angular. Eu cheguei a criar o projeto do front-end, mas não conseguiria entregar algo apresentável no tempo que foi dado.</li>
  </ul>
