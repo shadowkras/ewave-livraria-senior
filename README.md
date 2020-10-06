@@ -1,6 +1,6 @@
 # ewave-livraria-senior
 
-﻿<p>Este projeto é uma prova de aptidão realizada pela Ewave do Brasil (ver issue: ) Este projeto é a <b>Biblioteca Virtual</b>. Um projeto de uma livraria utilizando Asp.NET Core, com EntityFramework e utilizando arquitetura DDD (Domain-Driven Design).</p>
+﻿<p>Este projeto é uma prova de aptidão realizada pela Ewave do Brasil (<a href="https://github.com/shadowkras/ewave-livraria-senior/issues/1">ver issue</a>) Este projeto é a <b>Biblioteca Virtual</b>. Um projeto de uma livraria utilizando Asp.NET Core, com EntityFramework e utilizando arquitetura DDD (Domain-Driven Design).</p>
 <br />
 <p>Ela foi construída por <a href="emailto:lsr.sena@gmail.com">Leonardo Sena</a>, e pode ser encontrado no <a href="https://github.com/shadowkras/ewave-livraria-senior/">Github</a> para download.</p>
 
