@@ -13,7 +13,8 @@
 <p>Por fim, a aplicação de dados utiliza de classes para realizar o mapeamento das tabelas com o EntityFramework. E disponibiliza repositórios para serem utilizados pelas camadas superiores, por meio de interfaces. Foi criado um repositório base para centralizar os métodos mais utilizados pelos repositórios, para atender os princípios do DRY (don't repeat yourself).</p>
 
 <P>Sobre os requerimentos do projeto:</p>
-<ul>.NET Core. A aplicação foi toda desenvolvida utilizando .NET Core.</li>
+<ul>
+ <li>.NET Core. A aplicação foi toda desenvolvida utilizando .NET Core.</li>
 <li>Testes de Unidade: A solução possui um projeto com testes unitários das controllers criadas pela aplicação.</li>
 <li>Conteinerização: A aplicação funciona em docker. Apesar de não conseguir realizar todas as configurações, ela levanta no docker desktop e se comunica com um banco em conteiner no Google Cloud. Ela também pode ser publicada em um container em kubernetes do Google Clouds, mas esbarrei em um problema dop cabeçalho encriptados dos requests de login não serem aceitos entre o container do banco e da aplicação, e apesar de ter tentado algumas soluções para corrigir, acredito que apenas mudando o tipo do container no google (flex) para uma maquina virtual resolve este problema.</li>
 <li>REST: A aplicação possui endpoints REST.</li>
