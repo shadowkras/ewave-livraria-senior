@@ -46,7 +46,7 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade Address, necessário para o EntityFramework.
         /// </summary>
-        protected Address()
+        public Address()
         { }
 
         /// <summary>

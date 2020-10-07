@@ -23,7 +23,6 @@ namespace BibliotecaVirtual.Application.Services
         private readonly List<string> DefaultUserRoles = new List<string> {
                 UserRoles.Administrator,
                 UserRoles.Moderator,
-
             };
 
         public UserPermissionService(UserManager<IdentityUser> userManager,
@@ -95,7 +94,7 @@ namespace BibliotecaVirtual.Application.Services
                 var dados = await _repositorio.SelectList(0, 10, SelectUsers(),
                                                           p => p.Nome.ToLower().Contains(filtro.ToLower()) ||
                                                                p.Sobrenome.ToLower().Contains(filtro.ToLower()));
-                 
+
 
                 Users = dados.ToList();
             }
@@ -171,7 +170,7 @@ namespace BibliotecaVirtual.Application.Services
                 foreach (var item in otherRoles)
                 {
                     await _userManager.RemoveFromRoleAsync(UserIdentity, item);
-                }               
+                }
 
                 var result = await _userManager.AddToRoleAsync(UserIdentity, userRole);
                 return result.Succeeded;
@@ -199,7 +198,7 @@ namespace BibliotecaVirtual.Application.Services
                 foreach (var item in roles)
                 {
                     removeResult = await _userManager.RemoveFromRoleAsync(UserIdentity, item);
-                }                
+                }
 
                 return removeResult.Succeeded;
             }

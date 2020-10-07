@@ -163,6 +163,7 @@
                         <label class="label" asp-for="@Model.CoverImageBase64"></label>
                         <input asp-for="@Model.CoverImageBase64" class="form-control img-output hide-input" readonly />
                         <span asp-validation-for="@Model.CoverImageBase64" class="text-danger"></span>
+                        @await Component.InvokeAsync(typeof(ImagemDropzoneViewComponent), new { extensoesImagensAceitas = "*" })
                     </div>
                 </div>                
             }

@@ -24,9 +24,9 @@ function editora()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.Sucesso)
+                            if (response && response.sucesso)
                             {
-                                let data = response.Dados;
+                                let data = response.dados;
                                 editora.vueSelect.atualizarLista(data);
                             }
                             else {

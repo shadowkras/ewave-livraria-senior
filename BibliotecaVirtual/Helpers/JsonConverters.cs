@@ -12,7 +12,10 @@ namespace BibliotecaVirtual.Helpers
     {
         public static JsonSerializerSettings DefaultSettings = new JsonSerializerSettings
         {
-            ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver(),
+            ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver()
+            {
+                NamingStrategy = new Newtonsoft.Json.Serialization.CamelCaseNamingStrategy(),
+            },
             NullValueHandling = NullValueHandling.Ignore,
             MissingMemberHandling = MissingMemberHandling.Error,
             Culture = CultureInfo.CurrentCulture,
@@ -30,7 +33,10 @@ namespace BibliotecaVirtual.Helpers
 
         public static JsonSerializerSettings DefaultSettingsWithNulls = new JsonSerializerSettings
         {
-            ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver(),
+            ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver()
+            {
+                NamingStrategy = new Newtonsoft.Json.Serialization.CamelCaseNamingStrategy(),
+            },
             NullValueHandling = NullValueHandling.Include,
             MissingMemberHandling = MissingMemberHandling.Ignore,
             Culture = CultureInfo.CurrentCulture,

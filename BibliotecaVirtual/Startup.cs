@@ -8,8 +8,6 @@ using BibliotecaVirtual.Data.Interfaces;
 using BibliotecaVirtual.Data.Repositories;
 using BibliotecaVirtual.Data.UnitOfWork;
 using BibliotecaVirtual.Helpers;
-using Google.Cloud.AspNetCore.DataProtection.Kms;
-using Google.Cloud.AspNetCore.DataProtection.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -104,7 +102,7 @@ namespace BibliotecaVirtual
 
             services.AddIdentity<IdentityUser, IdentityRole>(opt =>
             {
-                opt.SignIn.RequireConfirmedEmail = true;
+                opt.SignIn.RequireConfirmedEmail = false;
                 opt.User.RequireUniqueEmail = true;
                 opt.Password.RequiredLength = 8;
             }).AddDefaultUI()
@@ -225,12 +223,16 @@ namespace BibliotecaVirtual
             services.AddTransient<IPublisherService, PublisherService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserPermissionService, UserPermissionService>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IPublisherRepository, PublisherRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookCategoryRepository, BookCategoryRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
+            
 
             #endregion
 

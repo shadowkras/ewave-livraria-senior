@@ -28,7 +28,7 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade Category, necessário para o EntityFramework.
         /// </summary>
-        protected Category()
+        public Category()
         { }
 
         /// <summary>

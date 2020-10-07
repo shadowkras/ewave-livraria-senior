@@ -23,7 +23,7 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade BookCategory, necessário para o EntityFramework.
         /// </summary>
-        protected BookCategory()
+        public BookCategory()
         { }
 
         /// <summary>

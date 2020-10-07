@@ -23,7 +23,7 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade Author, necessário para o EntityFramework.
         /// </summary>
-        protected Author()
+        public Author()
         { }
 
         /// <summary>

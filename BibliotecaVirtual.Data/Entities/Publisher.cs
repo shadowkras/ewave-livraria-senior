@@ -23,7 +23,7 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade Publisher, necessário para o EntityFramework.
         /// </summary>
-        protected Publisher()
+        public Publisher()
         { }
 
         /// <summary>

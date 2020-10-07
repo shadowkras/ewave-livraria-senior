@@ -57,7 +57,7 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade User, necessário para o EntityFramework.
         /// </summary>
-        protected User()
+        public User()
         { }
 
         /// <summary>

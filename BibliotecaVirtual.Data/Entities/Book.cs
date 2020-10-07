@@ -73,8 +73,10 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade Book, necessário para o EntityFramework.
         /// </summary>
-        protected Book()
-        { }
+        public Book()
+        {
+            Categories = new HashSet<BookCategory>();
+        }
 
         /// <summary>
         /// Construtor com as informações requeridas de um livro.

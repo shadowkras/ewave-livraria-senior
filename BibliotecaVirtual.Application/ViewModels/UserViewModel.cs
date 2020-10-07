@@ -12,7 +12,7 @@ namespace BibliotecaVirtual.Application.ViewModels
 
         [Display(Name = "Nome")]
         [Required]
-        public string Name { get; set; }
+        public string Nome { get; set; }
 
         [Display(Name = "Sobrenome")]
         [Required]
@@ -33,6 +33,8 @@ namespace BibliotecaVirtual.Application.ViewModels
 
         [Display(Name = "Inativo")]
         public bool Inactive { get; set; }
+
+        public string UsuarioIdentityId { get; set; }
 
         /// <summary>
         /// Construtor da entidade User, necessário para o EntityFramework.

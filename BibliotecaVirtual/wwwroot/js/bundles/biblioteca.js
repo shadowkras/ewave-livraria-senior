@@ -35,10 +35,13 @@ function autor()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.sucesso)
                             {
-                                let data = response;
+                                let data = response.dados;
                                 autor.vueSelect.atualizarLista(data);
+                            }
+                            else {
+                                autor.vueSelect.atualizarLista([]);
                             }
 
                             $('#selectAuthor .carregando').addClass('hidden');
@@ -105,10 +108,13 @@ function categoria()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.sucesso)
                             {
-                                let data = response;
+                                let data = response.dados;
                                 categoria.vueSelect.atualizarLista(data);
+                            }
+                            else {
+                                categoria.vueSelect.atualizarLista([]);
                             }
 
                             $('#selectCategory .carregando').addClass('hidden');
@@ -190,10 +196,13 @@ function editora()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.sucesso)
                             {
-                                let data = response;
+                                let data = response.dados;
                                 editora.vueSelect.atualizarLista(data);
+                            }
+                            else {
+                                editora.vueSelect.atualizarLista([]);
                             }
 
                             $('#selectPublisher .carregando').addClass('hidden');
@@ -382,9 +391,9 @@ function livros()
                     $.get(endereco, parametros)
                         .done(function (response)
                         {
-                            if (response && response.length)
+                            if (response && response.sucesso)
                             {
-                                livros.vueSelect.atualizarLista(response);
+                                livros.vueSelect.atualizarLista(response.dados);
                             }
                             else
                             {

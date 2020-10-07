@@ -33,7 +33,7 @@ namespace BibliotecaVirtual.Data.Entities
         /// <summary>
         /// Construtor da entidade School, necessário para o EntityFramework.
         /// </summary>
-        protected School()
+        public School()
         { }
 
         /// <summary>

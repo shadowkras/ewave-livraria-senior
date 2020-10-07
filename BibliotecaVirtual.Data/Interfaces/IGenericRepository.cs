@@ -25,6 +25,14 @@ namespace BibliotecaVirtual.Data.Interfaces
         void Insert(IEnumerable<TEntity> entities);
 
         /// <summary>
+        /// Method to return the current value of a certain property assigned to an entity.
+        /// </summary>
+        /// <param name="entity">Entity instance.</param>
+        /// <param name="property">Property to be checked.</param>
+        /// <returns></returns>
+        int GetInsertCurrentKey(TEntity entity, Expression<Func<TEntity, int>> property);
+
+        /// <summary>
         /// Method to update a single entity.
         /// <para>Examples:</para>
         /// <para>_repository.Update(entity);</para>

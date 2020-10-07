@@ -73,6 +73,18 @@ namespace BibliotecaVirtual.Data.Repositories
             DbSet.AddRange(entities);
         }
 
+        /// <summary>
+        /// Method to return the current value of a certain property assigned to an entity.
+        /// </summary>
+        /// <param name="entity">Entity instance.</param>
+        /// <param name="property">Property to be checked.</param>
+        /// <returns></returns>
+        public virtual int GetInsertCurrentKey(TEntity entity, Expression<Func<TEntity, int>> property)
+        {
+            var currentValue = _dbContext.Entry(entity).Property(property).CurrentValue;
+            return (int)currentValue;
+        }
+
         #endregion
 
         #region Update

@@ -45,7 +45,7 @@ namespace BibliotecaVirtual.Application.Services
         {
             #region Validação da regra de negócios
 
-            if (await _repository.Exists(p => p.Nome == viewModel.Name && p.Sobrenome == viewModel.Sobrenome))
+            if (await _repository.Exists(p => p.Nome == viewModel.Nome && p.Sobrenome == viewModel.Sobrenome))
             {
                 ModelError = string.Format(Criticas.Ja_Cadastrado_0, "Usuário");
                 return viewModel;
@@ -72,7 +72,7 @@ namespace BibliotecaVirtual.Application.Services
         {
             #region Validação da regra de negócios
 
-            if (await _repository.Exists(p => p.Nome == viewModel.Name && p.Sobrenome == viewModel.Sobrenome && p.UserId != viewModel.UserId))
+            if (await _repository.Exists(p => p.Nome == viewModel.Nome && p.Sobrenome == viewModel.Sobrenome && p.UserId != viewModel.UserId))
             {
                 ModelError = string.Format(Criticas.Ja_Existe_0, "outro usuário com este nome.");
                 return viewModel;

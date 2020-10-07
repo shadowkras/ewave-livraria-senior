@@ -62,9 +62,11 @@ namespace BibliotecaVirtual.Application.Services
 
             if (viewModel.CategoriesList.Count > 0)
             {
+                var bookId = _bookRepository.GetInsertCurrentKey(book, p => p.BookId);
+
                 foreach (var categoryId in viewModel.CategoriesList)
                 {
-                    var bookCategory = new BookCategory(book.BookId, categoryId);
+                    var bookCategory = new BookCategory(bookId, categoryId);
                     _bookCategoryRepository.Insert(bookCategory);
                 }
             }
