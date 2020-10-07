@@ -65,6 +65,22 @@ function livros()
                         return '';
                     }
                 },
+                registroAlugar: function (item) {
+                    var endereco = site.url + 'book/rent';
+                    let parametros = {
+                        bookId: item.bookId,
+                    };
+
+                    $.post(endereco, parametros)
+                        .done(function (response) {
+                            if (response && response.sucesso) {
+                                alert('Livro alugado com sucesso');
+                            }
+                            else {
+                                alert(response.mensagem);
+                            }
+                        });
+                },
                 filtroChanged: function ()
                 {
                     this.obterLivros();

@@ -31,7 +31,7 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
         public async Task<IActionResult> GetBooks(string filter)
         {
             var books = await _bookService.ObtainBooks(filter);
-            return Json(books);
+            return ReturnApi(true, string.Empty, books);
         }
 
         [HttpGet]
@@ -84,6 +84,22 @@ namespace BibliotecaVirtual.Areas.Biblioteca.Controllers
             else
             {
                 return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        [Route("book/rent")]
+        public async Task<IActionResult> Rent(int bookId)
+        {
+            var book = await _bookService.RentBook(bookId);
+
+            if (_bookService.IsSuccessful() == true)
+            {
+                return ReturnApi(true, string.Empty, book);
+            }
+            else
+            {
+                return ReturnApi(false, _bookService.GetModelErrors());
             }
         }
 

@@ -15,19 +15,27 @@ namespace BibliotecaVirtual.Application.Services
     {
         private readonly IBookRepository _bookRepository;
         private readonly IBookCategoryRepository _bookCategoryRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IUserBookRentRepository _userBookRentRepository;
 
         #region Construtor
 
         public BookService(IBookRepository bookRepositorio,
                            IBookCategoryRepository bookCategoryRepository,
+                           IUserRepository userRepository,
+                           IUserBookRentRepository userBookRentRepository,
                            IApplicationUnitOfWork uow)
             : base(uow)
         {
             _bookRepository = bookRepositorio;
             _bookCategoryRepository = bookCategoryRepository;
+            _userRepository = userRepository;
+            _userBookRentRepository = userBookRentRepository;
         }
 
         #endregion
+
+        #region Adicionar, alterar, excluir
 
         /// <summary>
         /// Cadastra um novo livro.
@@ -147,15 +155,70 @@ namespace BibliotecaVirtual.Application.Services
         /// <summary>
         /// Deleta um livro cadastrado.
         /// </summary>
-        /// <param name="BookId">Identificador do livro.</param>
+        /// <param name="bookId">Identificador do livro.</param>
         /// <returns></returns>
-        public async Task<bool> DeleteBook(int BookId)
+        public async Task<bool> DeleteBook(int bookId)
         {
-            _bookRepository.Delete(p => p.BookId == BookId);
+            _bookRepository.Delete(p => p.BookId == bookId);
             await Commit();
 
             return OperationSuccesful;
         }
+
+        /// <summary>
+        /// Deleta um livro cadastrado.
+        /// </summary>
+        /// <param name="bookId">Identificador do livro.</param>
+        /// <returns></returns>
+        public async Task<bool> RentBook(int bookId)
+        {
+            var userId = await _userRepository.ObterUsuarioId();
+            if (userId.HasValue == true)
+            {
+                if (await _userBookRentRepository.Exists(p => p.UserId == userId.Value && p.BookId == bookId && p.ReturnedDate.HasValue == false) == true)
+                {
+                    AddModelError("Usuário já está com uma cópia do livro informado. Só é permitido uma cópia por usuário");
+                    return false;
+                }
+                if (await _userBookRentRepository.Count(p => p.UserId == userId.Value && p.ReturnedDate.HasValue == false) >= 5)
+                {
+                    AddModelError("Usuário já está com 5 livros alugrados. Não é permitido alugar mais livros antes de devolver alguns.");
+                    return false;
+                }
+                else if (await _userBookRentRepository.Exists(p => p.ReturnedDate.Value > p.ReturnDate) == true)
+                {
+                    var bookRentalInfraction = await _userBookRentRepository.Select(p => p.ReturnedDate.Value > p.ReturnDate);
+
+                    if (bookRentalInfraction.ReturnedDate.Value.AddDays(30).Date > System.DateTime.Now.Date)
+                    {
+                        var infractionDaysLeft = bookRentalInfraction.ReturnedDate.Value.AddDays(30).Date - System.DateTime.Now.Date;
+                        AddModelError($"Usuário está com uma restrição de aluguel por mais {infractionDaysLeft.TotalDays} dias devido atrasos na devolução.");
+                        return false;
+                    }
+                }
+
+                var bookRental = new UserBookRent(bookId, userId.Value)
+                {
+                    RentalDate = System.DateTime.Now,
+                    ReturnDate = System.DateTime.Now.AddDays(30),
+                };
+
+                _userBookRentRepository.Insert(bookRental);
+                await Commit();
+
+                return OperationSuccesful;
+            }
+            else
+            {
+                AddModelError("Usuário não encontrado ou não logado na aplicação. Faça o login e tente novamente.");
+                return false;
+            }
+
+        }
+
+        #endregion
+
+        #region Consultas
 
         /// <summary>
         /// Obtém uma lista com os livros cadastrados.
@@ -230,6 +293,8 @@ namespace BibliotecaVirtual.Application.Services
             return viewModel;
         }
 
+        #endregion
+
         #region Dispose
 
         /// <summary>
@@ -239,6 +304,8 @@ namespace BibliotecaVirtual.Application.Services
         {
             _bookRepository.Dispose();
             _bookCategoryRepository.Dispose();
+            _userRepository.Dispose();
+            _userBookRentRepository.Dispose();
         }
 
         #endregion

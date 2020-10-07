@@ -75,7 +75,7 @@ namespace BibliotecaVirtual.Data.Repositories
         /// Retorna o UsuarioId do usuário logado.
         /// </summary>
         /// <returns></returns>
-        public async Task<long?> ObterUsuarioId()
+        public async Task<int?> ObterUsuarioId()
         {
             if (UsuarioAutenticado == true)
             {

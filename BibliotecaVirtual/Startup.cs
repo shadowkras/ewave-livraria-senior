@@ -231,6 +231,7 @@ namespace BibliotecaVirtual
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookCategoryRepository, BookCategoryRepository>();
+            services.AddTransient<IUserBookRentRepository, UserBookRentRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
             
 

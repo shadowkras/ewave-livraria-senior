@@ -5,7 +5,7 @@
 <div class="col-12 no-padding">
     <header class="heading">
         <h2 id="tituloFormulario">Livros</h2>
-        @if (User.Identity.IsAuthenticated)
+        @if (User.IsInRole(UserRoles.Moderator) == true)
         {
             <div class="cursor-pointer float-right botao-cadastrar-livro">
                 <a class="btn-sm btn-primary text-light"
@@ -66,12 +66,24 @@
                     <td class="grade-col-alterar">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class='btn btn-primary btn-sm' tabindex="0"
-                               data-original-title='Alterar informações do livro.'
-                               data-placement='auto'
-                               :href="registroConsultar('@(Url.GetAbsoluteUrl("Book", "Edit"))', item)">
-                                <i class=""></i> Alterar
-                            </a>
+                            if (User.IsInRole(UserRoles.Moderator) == true)
+                            {
+                                <a class='btn btn-primary btn-sm cursor-pointer' tabindex="0"
+                                   data-original-title='Alterar informações do livro.'
+                                   data-placement='auto'
+                                   :href="registroConsultar('@(Url.GetAbsoluteUrl("Book", "Edit"))', item)">
+                                    <i class=""></i> Alterar
+                                </a>
+                            }
+                            else
+                            {
+                                <a class='btn btn-primary btn-sm cursor-pointer' tabindex="0"
+                                   data-original-title='Alugar uma cópia do livro.'
+                                   data-placement='auto'
+                                   :href="registroAlugar(item)">
+                                    <i class=""></i> Alugar
+                                </a>
+                            }
                         }
                     </td>
                 </tr>

@@ -36,6 +36,13 @@ namespace BibliotecaVirtual.Application.Interfaces
         Task<bool> DeleteBook(int bookId);
 
         /// <summary>
+        /// Deleta um livro cadastrado.
+        /// </summary>
+        /// <param name="bookId">Identificador do livro.</param>
+        /// <returns></returns>
+        Task<bool> RentBook(int bookId);
+
+        /// <summary>
         /// Obtém uma lista com os livros cadastrados.
         /// </summary>
         /// <returns></returns>

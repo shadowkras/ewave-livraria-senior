@@ -22,7 +22,7 @@ namespace BibliotecaVirtual.Data.Interfaces
         /// Retorna o UsuarioId do usuário logado.
         /// </summary>
         /// <returns></returns>
-        Task<long?> ObterUsuarioId();
+        Task<int?> ObterUsuarioId();
 
         /// <summary>
         /// Retorna o Nome do usuário logado.
