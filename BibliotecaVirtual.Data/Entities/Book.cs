@@ -61,6 +61,11 @@ namespace BibliotecaVirtual.Data.Entities
         public ICollection<BookCategory> Categories { get; set; }
 
         /// <summary>
+        /// Lista de usuários que alugaram o livro.
+        /// </summary>
+        public ICollection<UserBookRent> RentUsers { get; set; }
+
+        /// <summary>
         /// Autor do livro.
         /// </summary>
         public Author Author { get; set; }
@@ -76,6 +81,7 @@ namespace BibliotecaVirtual.Data.Entities
         public Book()
         {
             Categories = new HashSet<BookCategory>();
+            RentUsers = new HashSet<UserBookRent>();
         }
 
         /// <summary>

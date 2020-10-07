@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BibliotecaVirtual.Data.Extensions;
 using BibliotecaVirtual.Data.Interfaces;
 
@@ -55,10 +56,17 @@ namespace BibliotecaVirtual.Data.Entities
         public bool Inactive { get; set; }
 
         /// <summary>
+        /// Lista de livro alugados.
+        /// </summary>
+        public ICollection<UserBookRent> RentBooks { get; set; }
+
+        /// <summary>
         /// Construtor da entidade User, necessário para o EntityFramework.
         /// </summary>
         public User()
-        { }
+        {
+            RentBooks = new HashSet<UserBookRent>();
+        }
 
         /// <summary>
         /// Define a imagem de perfil do usuário.
