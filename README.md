@@ -1,5 +1,8 @@
 # ewave-livraria-senior
 
+<a class="navbar-brand text-light" style="font-size: 1.25rem;"><img class="logo-app" width="200px" src="https://github.com/shadowkras/ewave-livraria-senior/blob/master/BibliotecaVirtual/wwwroot/img/todo-4783676_640.png?raw=true" /></a>
+
+
 ﻿<p>Este projeto é uma prova de aptidão realizada pela Ewave do Brasil (<a href="https://github.com/shadowkras/ewave-livraria-senior/issues/1">ver issue</a>) Este projeto é a <b>Livraria To-Do</b>. Um projeto de uma livraria utilizando Asp.NET Core, com EntityFramework e utilizando arquitetura DDD (Domain-Driven Design).</p>
 <br />
 <p>Ela foi construída por <a href="emailto:lsr.sena@gmail.com">Leonardo Sena</a>, e pode ser encontrado no <a href="https://github.com/shadowkras/ewave-livraria-senior/">Github</a> para download.</p>
@@ -11,6 +14,8 @@
 <p>A aplicação de apresentação utiliza bootstrap 4.0, vue.js para realizar o two-way databind no componente da grade de livros e nos componentes que populam os elementos de select no cadastro de livros. Por fim, todos os arquivos estáticos estão utilizando cache para melhor desempenho. O Vue foi escolhido pela sua simplicidade e tamanho reduzido, atendendo a necessidade básica de realizar o binding com os elementos com pouco código javascript. E por fim, também foi criado um componente para enviar a imagem com a capa do livro para o servidor.</p>
 <p>A aplicação de serviços constitui no meio-termo entre as controllers e os repositórios, utilizando de uma DTO (data transfer object) para transportar essas informações dos repositórios para as controllers na primeira camada.</p>
 <p>Por fim, a aplicação de dados utiliza de classes para realizar o mapeamento das tabelas com o EntityFramework. E disponibiliza repositórios para serem utilizados pelas camadas superiores, por meio de interfaces. Foi criado um repositório base para centralizar os métodos mais utilizados pelos repositórios, para atender os princípios do DRY (don't repeat yourself).</p>
+
+Uma prévia da aplicação pode ser encontrada no endereço: <a href="https://e-topic-291313.appspot.com/" target="_blank">https://e-topic-291313.appspot.com/</a>
 
 <P>Sobre os requerimentos do projeto:</p>
 <ul>
