@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Swashbuckle;
 using BibliotecaVirtual.Application.Helpers;
 using BibliotecaVirtual.Application.Interfaces;
 using BibliotecaVirtual.Application.Services;
@@ -21,6 +22,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using System.IO;
+using Microsoft.OpenApi.Models;
 
 namespace BibliotecaVirtual
 {
@@ -262,6 +265,33 @@ namespace BibliotecaVirtual
                         .ProtectKeysWithGoogleKms(
                             "projects/e-topic-291313/locations/global/keyRings/BibliotecaVirtualKey/cryptoKeys/BibliotecaVirtualKey");
             }
+
+            #endregion
+
+            #region Cors
+            
+            services.AddCors(options =>
+                {
+                    options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("http://localhost:8081", "http://localhost:4200")
+                                  .AllowAnyHeader()
+                                  .AllowAnyMethod());
+                });
+
+            #endregion
+
+            #region Swagger
+
+            services.AddSwaggerGen(c =>
+                {
+                    c.IncludeXmlComments(Path.ChangeExtension(System.Reflection.Assembly.GetAssembly(typeof(Startup)).Location, "xml"));
+                    c.SwaggerDoc("v1", new OpenApiInfo
+                    {
+                        Title = "To-Do - Biblioteca Virtual",
+                        Version = "v1",
+                        Description = ""
+                    });
+                });
 
             #endregion
         }

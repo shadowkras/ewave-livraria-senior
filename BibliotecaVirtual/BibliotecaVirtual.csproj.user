@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ActiveDebugProfile>Docker</ActiveDebugProfile>
+    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <GoogleKubernetesEnginePublishDeploymentName>biblioteca-virtual</GoogleKubernetesEnginePublishDeploymentName>
     <GoogleKubernetesEnginePublishVersion>20201005t125021</GoogleKubernetesEnginePublishVersion>
     <GoogleKubernetesEnginePublishReplicas>1</GoogleKubernetesEnginePublishReplicas>
@@ -14,8 +14,10 @@
     <GoogleComputeEnginePublishOpenWebsite>True</GoogleComputeEnginePublishOpenWebsite>
     <GoogleComputeEnginePublishLaunchRemoteDebugger>False</GoogleComputeEnginePublishLaunchRemoteDebugger>
     <GoogleComputeEnginePublishSiteName>Default Web Site</GoogleComputeEnginePublishSiteName>
-    <GoogleCloudPublishChoice>Gae</GoogleCloudPublishChoice>
     <GoogleKubernetesEnginePublishClusterId>https://container.googleapis.com/v1/projects/e-topic-291313/zones/us-east4-a/clusters/cluster-1</GoogleKubernetesEnginePublishClusterId>
+    <GoogleComputeEnginePublishInstanceName>aspnet-1</GoogleComputeEnginePublishInstanceName>
+    <GoogleComputeEnginePublishInstanceZone>southamerica-east1-c</GoogleComputeEnginePublishInstanceZone>
+    <GoogleCloudPublishChoice>Gae</GoogleCloudPublishChoice>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

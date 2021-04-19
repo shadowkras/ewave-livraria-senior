@@ -28,4 +28,3 @@ C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\ob
 C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotecaVirtual.Application.csproj.CopyComplete
 C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotecaVirtual.Application.dll
 C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Debug\netcoreapp3.1\BibliotecaVirtual.Application.pdb
-C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\bin\Debug\netcoreapp3.1\database.json

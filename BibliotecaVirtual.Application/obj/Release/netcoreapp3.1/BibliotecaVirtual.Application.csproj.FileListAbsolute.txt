@@ -1,0 +1,15 @@
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\bin\Release\netcoreapp3.1\BibliotecaVirtual.Application.deps.json
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\bin\Release\netcoreapp3.1\BibliotecaVirtual.Application.dll
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\bin\Release\netcoreapp3.1\BibliotecaVirtual.Application.pdb
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\bin\Release\netcoreapp3.1\BibliotecaVirtual.Data.dll
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\bin\Release\netcoreapp3.1\BibliotecaVirtual.Data.pdb
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.csprojAssemblyReference.cache
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.Resources.Criticas.resources
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.Resources.Erros.resources
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.csproj.GenerateResource.cache
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.AssemblyInfoInputs.cache
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.AssemblyInfo.cs
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.csproj.CoreCompileInputs.cache
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.csproj.CopyComplete
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.dll
+C:\Users\Leo\source\repos\ewave-livraria-senior\BibliotecaVirtual.Application\obj\Release\netcoreapp3.1\BibliotecaVirtual.Application.pdb

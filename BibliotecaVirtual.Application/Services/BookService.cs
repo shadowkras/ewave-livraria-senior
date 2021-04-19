@@ -182,7 +182,7 @@ namespace BibliotecaVirtual.Application.Services
                 }
                 if (await _userBookRentRepository.Count(p => p.UserId == userId.Value && p.ReturnedDate.HasValue == false) >= 2)
                 {
-                    AddModelError("Usuário já está com 2 livros alugrados. Não é permitido alugar mais livros antes de devolver alguns.");
+                    AddModelError("Usuário já está com 2 livros alugados. Não é permitido alugar mais livros antes de devolver alguns.");
                     return false;
                 }
                 else if (await _userBookRentRepository.Exists(p => p.ReturnedDate.Value > p.ReturnDate) == true)
