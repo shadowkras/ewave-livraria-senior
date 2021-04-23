@@ -1,4 +1,4 @@
-# ewave-livraria-senior
+# Projeto: Ewave livraria senior
 
 <a class="navbar-brand text-light" style="font-size: 1.25rem;"><img class="logo-app" width="200px" src="https://github.com/shadowkras/ewave-livraria-senior/blob/master/BibliotecaVirtual/wwwroot/img/todo-4783676_640.png?raw=true" /></a>
 
